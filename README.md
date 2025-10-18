@@ -58,23 +58,52 @@ Notion에서 글을 쓰면 자동으로 나만의 포트폴리오 웹사이트�
 
 ## 🚀 시작하기
 
-### 필요한 것
+### 🎯 빠른 시작 (3단계, 17분)
 
-1. **Notion 계정** - 이미 사용 중이시죠?
-2. **GitHub 계정** - 무료로 만들 수 있어요
-3. **Vercel 계정** - GitHub으로 간편 가입 가능 (무료)
+**Phase 1-8 (코드 구현)**: ✅ 완료됨!
 
-### 설정 방법
+**다음 단계**: 👉 **[QUICK_START.md](./QUICK_START.md)** ⭐ 가장 빠른 가이드
 
-자세한 설정 가이드는 곧 추가될 예정입니다. 
-기본적으로는:
+### 📖 자세한 가이드 선택
 
-1. 이 프로젝트를 내 GitHub에 복사
-2. Notion 데이터베이스 템플릿 복제
-3. Vercel에 연결하고 배포
-4. Notion과 연동 설정
+| 문서 | 추천 대상 | 소요 시간 |
+|------|-----------|----------|
+| **[QUICK_START.md](./QUICK_START.md)** ⭐ | 빠르게 시작하고 싶은 분 | 17분 |
+| **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** | 단계별 설명이 필요한 분 | 30분 |
+| **[PHASE_9_NOTION_SETUP.md](./PHASE_9_NOTION_SETUP.md)** | Notion 설정에 집중 | 40분 |
+| **[NOTION_BUTTON_URL.md](./NOTION_BUTTON_URL.md)** | 버튼 설정만 보고 싶은 분 | 5분 |
 
-→ **코딩 지식 없이도 가능합니다!**
+### 간단 요약
+
+1. **Notion Integration 생성** → API 키 발급
+2. **Notion 데이터베이스 생성** → 필수 속성 추가
+3. **환경 변수 설정** → `.env.local` 파일 수정
+4. **동기화 테스트** → `npm run sync`
+5. **개발 서버 실행** → `npm run dev`
+
+### 필수 계정
+
+- ✅ Notion 계정 (무료)
+- ✅ GitHub 계정 (무료)
+- ✅ Vercel 계정 (무료)
+
+### 로컬 개발
+
+```bash
+# 의존성 설치 (이미 완료됨)
+npm install
+
+# 환경 변수 설정
+cp .env.example .env.local
+# .env.local 파일을 열어 Notion API 키와 데이터베이스 ID 입력
+
+# Notion 데이터 동기화
+npm run sync
+
+# 개발 서버 실행
+npm run dev
+# http://localhost:3000 접속
+```
 
 ## 🎨 어떻게 작동하나요?
 
@@ -98,7 +127,27 @@ Notion에서 글 작성
 
 ## 📚 더 알아보기
 
-- [제품 요구사항 정의서(PRD)](./docs/PRD.md) - 기술적인 내용이 궁금하신 분들을 위한 상세 문서
+### 📚 프로젝트 문서 (기획 → 설계 → 개발)
+
+#### 기획 단계
+- **[제품 요구사항 정의서(PRD)](./docs/PRD.md)** - 제품의 목표, 기능, 사용자 시나리오 등 전체 기획 내용
+- **[기술 요구사항 정의서(TRD)](./docs/TRD.md)** - 시스템 아키텍처, API 설계, 기술 스택 등 구현 세부사항
+
+#### 설계 단계  
+- **[정보 구조 설계서(IA)](./docs/IA.md)** - 사이트맵, URL 구조, 네비게이션, 콘텐츠 분류 체계
+- **[디자인 가이드라인](./docs/DESIGN_GUIDELINES.md)** - shadcn UI 기반 디자인 시스템, 컴포넌트 스타일
+- **[코드 가이드라인](./docs/CODE_GUIDELINES.md)** - 코딩 표준, 명명 규칙, 모범 사례
+
+#### 개발 단계
+- **[개발 가이드 (DEVELOPMENT_GUIDE)](./docs/DEVELOPMENT_GUIDE.md)** ⭐ - Phase 0부터 Phase 10까지 단계별 구현 가이드 (총 9-10시간)
+
+### 역할별 가이드
+
+**🎨 디자이너를 위한 가이드**
+UI/UX 디자인을 커스터마이징하고 싶으신 분들은 [디자인 가이드라인](./docs/DESIGN_GUIDELINES.md)을 참고하세요. shadcn UI 기반의 컴포넌트 스타일, 색상 시스템, 타이포그래피 등이 상세히 정의되어 있습니다.
+
+**👨‍💻 개발자를 위한 가이드**
+코드 기여나 커스터마이징을 원하시는 분들은 [코드 가이드라인](./docs/CODE_GUIDELINES.md)을 먼저 읽어주세요. TypeScript, React, Next.js, Notion API 연동에 대한 모든 가이드가 포함되어 있습니다.
 
 ## 💬 자주 묻는 질문
 
