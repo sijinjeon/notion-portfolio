@@ -442,7 +442,230 @@ const typeScale = {
 
 ## 5. 간격 및 레이아웃 (Spacing & Layout)
 
-### 5.1. 간격 시스템
+### 5.1. 사이드바 기반 레이아웃 (Sidebar Layout)
+
+#### 5.1.1. 전체 레이아웃 구조
+```tsx
+// 전체 페이지 레이아웃
+<div className="flex min-h-screen bg-white">
+  {/* 고정 사이드바 */}
+  <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200 z-10">
+    <div className="flex flex-col h-full">
+      {/* 프로필 섹션 */}
+      <div className="p-6 border-b border-slate-200">
+        {/* 프로필 이미지 */}
+        <div className="relative w-24 h-24 mx-auto mb-4">
+          <Image
+            src="/profile.jpg"
+            alt="Profile"
+            fill
+            className="rounded-full object-cover"
+          />
+        </div>
+        
+        {/* 개인 정보 */}
+        <div className="text-center">
+          <h1 className="text-xl font-semibold text-slate-900 mb-2">
+            시진 전
+          </h1>
+          <p className="text-sm text-slate-600 mb-4">
+            Frontend Developer
+          </p>
+          
+          {/* 연락처 정보 */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+              <Mail className="h-4 w-4" />
+              <a href="mailto:sijin@example.com" className="hover:text-slate-900 transition-colors">
+                sijin@example.com
+              </a>
+            </div>
+            
+            {/* SNS 링크 */}
+            <div className="flex justify-center gap-3 mt-4">
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* 네비게이션 메뉴 */}
+      <nav className="flex-1 p-6">
+        <ul className="space-y-2">
+          <li>
+            <button 
+              className="w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg hover:bg-slate-100 transition-colors"
+              onClick={() => setActiveSection('home')}
+            >
+              <Home className="h-5 w-5 text-slate-500" />
+              <span className="text-slate-700">홈</span>
+            </button>
+          </li>
+          <li>
+            <button 
+              className="w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg hover:bg-slate-100 transition-colors"
+              onClick={() => setActiveSection('projects')}
+            >
+              <Briefcase className="h-5 w-5 text-slate-500" />
+              <span className="text-slate-700">프로젝트</span>
+            </button>
+          </li>
+          <li>
+            <button 
+              className="w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg hover:bg-slate-100 transition-colors"
+              onClick={() => setActiveSection('about')}
+            >
+              <User className="h-5 w-5 text-slate-500" />
+              <span className="text-slate-700">소개</span>
+            </button>
+          </li>
+          <li>
+            <button 
+              className="w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg hover:bg-slate-100 transition-colors"
+              onClick={() => setActiveSection('contact')}
+            >
+              <Mail className="h-5 w-5 text-slate-500" />
+              <span className="text-slate-700">연락하기</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      
+      {/* 하단 정보 */}
+      <div className="p-6 border-t border-slate-200">
+        <div className="text-center text-xs text-slate-400">
+          <p>© 2025 시진 전</p>
+          <p className="mt-1">Built with Next.js & Notion</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+  
+  {/* 메인 콘텐츠 영역 */}
+  <main className="flex-1 ml-80">
+    <div className="p-8">
+      {/* 동적 콘텐츠 영역 */}
+      {renderActiveSection()}
+    </div>
+  </main>
+</div>
+```
+
+#### 5.1.2. 사이드바 스타일 가이드라인
+
+**사이드바 너비 및 위치**
+```typescript
+const sidebarStyles = {
+  width: 'w-80',           // 320px 고정 너비
+  position: 'fixed',       // 고정 위치
+  height: 'h-full',        // 전체 높이
+  background: 'bg-white',  // 흰색 배경
+  border: 'border-r border-slate-200', // 오른쪽 테두리
+  zIndex: 'z-10',          // 다른 요소 위에 표시
+}
+```
+
+**프로필 섹션**
+```typescript
+const profileSection = {
+  container: 'p-6 border-b border-slate-200',
+  image: {
+    size: 'w-24 h-24',     // 96x96px 프로필 이미지
+    style: 'rounded-full object-cover',
+    container: 'relative mx-auto mb-4'
+  },
+  name: 'text-xl font-semibold text-slate-900 mb-2',
+  title: 'text-sm text-slate-600 mb-4',
+  contact: 'space-y-2',
+  social: 'flex justify-center gap-3 mt-4'
+}
+```
+
+**네비게이션 메뉴**
+```typescript
+const navigationMenu = {
+  container: 'flex-1 p-6',
+  list: 'space-y-2',
+  item: {
+    base: 'w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg',
+    hover: 'hover:bg-slate-100 transition-colors',
+    active: 'bg-blue-50 text-blue-600 border-r-2 border-blue-600',
+    icon: 'h-5 w-5 text-slate-500',
+    text: 'text-slate-700'
+  }
+}
+```
+
+#### 5.1.3. 메인 콘텐츠 영역
+
+**콘텐츠 컨테이너**
+```typescript
+const mainContent = {
+  container: 'flex-1 ml-80', // 사이드바 너비만큼 왼쪽 마진
+  padding: 'p-8',            // 내부 패딩
+  maxWidth: 'max-w-4xl mx-auto', // 최대 너비 제한
+  background: 'bg-white'      // 배경색
+}
+```
+
+**섹션별 레이아웃**
+```tsx
+// 홈 섹션
+const HomeSection = () => (
+  <section className="space-y-12">
+    {/* Hero 섹션 */}
+    <div className="text-center py-16">
+      <h1 className="text-5xl font-bold text-slate-900 mb-6">
+        안녕하세요, <span className="text-blue-600">시진</span>입니다
+      </h1>
+      <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+        프론트엔드 개발자로서 사용자 경험을 중시하며, 
+        창의적이고 효율적인 웹 솔루션을 만듭니다.
+      </p>
+    </div>
+    
+    {/* 최근 프로젝트 */}
+    <div>
+      <h2 className="text-3xl font-bold text-slate-900 mb-8">
+        최근 프로젝트
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* 프로젝트 카드들 */}
+      </div>
+    </div>
+  </section>
+);
+
+// 프로젝트 섹션
+const ProjectsSection = () => (
+  <section className="space-y-8">
+    <div className="flex items-center justify-between">
+      <h1 className="text-4xl font-bold text-slate-900">
+        프로젝트
+      </h1>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm">전체</Button>
+        <Button variant="outline" size="sm">웹 개발</Button>
+        <Button variant="outline" size="sm">모바일</Button>
+      </div>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* 프로젝트 그리드 */}
+    </div>
+  </section>
+);
+```
+
+### 5.2. 간격 시스템
 
 #### Spacing Scale (Tailwind)
 ```typescript
@@ -581,7 +804,211 @@ const sectionSpacing = {
 
 ## 6. 컴포넌트 스타일 (Component Styles)
 
-### 6.1. Card Component
+### 6.1. Sidebar Component
+
+#### 6.1.1. 사이드바 컴포넌트 구조
+
+```tsx
+import { useState } from 'react';
+import Image from 'next/image';
+import { Home, Briefcase, User, Mail, Github, Linkedin, Twitter } from 'lucide-react';
+
+interface SidebarProps {
+  activeSection: string;
+  onSectionChange: (section: string) => void;
+}
+
+export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const menuItems = [
+    { id: 'home', label: '홈', icon: Home },
+    { id: 'projects', label: '프로젝트', icon: Briefcase },
+    { id: 'about', label: '소개', icon: User },
+    { id: 'contact', label: '연락하기', icon: Mail },
+  ];
+
+  return (
+    <>
+      {/* 모바일 헤더 */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 md:hidden">
+        <div className="flex items-center justify-between p-4">
+          <h1 className="text-lg font-semibold">시진 전</h1>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </header>
+
+      {/* 모바일 오버레이 */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div 
+            className="fixed inset-0 bg-black/50"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200">
+            <SidebarContent 
+              activeSection={activeSection} 
+              onSectionChange={(section) => {
+                onSectionChange(section);
+                setMobileMenuOpen(false);
+              }} 
+            />
+          </aside>
+        </div>
+      )}
+
+      {/* 데스크톱 사이드바 */}
+      <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200 z-10 hidden md:block">
+        <SidebarContent activeSection={activeSection} onSectionChange={onSectionChange} />
+      </aside>
+    </>
+  );
+}
+
+function SidebarContent({ activeSection, onSectionChange }: SidebarProps) {
+  const menuItems = [
+    { id: 'home', label: '홈', icon: Home },
+    { id: 'projects', label: '프로젝트', icon: Briefcase },
+    { id: 'about', label: '소개', icon: User },
+    { id: 'contact', label: '연락하기', icon: Mail },
+  ];
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* 프로필 섹션 */}
+      <div className="p-6 border-b border-slate-200">
+        <div className="relative w-24 h-24 mx-auto mb-4">
+          <Image
+            src="/profile.jpg"
+            alt="시진 전"
+            fill
+            className="rounded-full object-cover"
+          />
+        </div>
+        
+        <div className="text-center">
+          <h1 className="text-xl font-semibold text-slate-900 mb-2">
+            시진 전
+          </h1>
+          <p className="text-sm text-slate-600 mb-4">
+            Frontend Developer
+          </p>
+          
+          {/* 연락처 정보 */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+              <Mail className="h-4 w-4" />
+              <a href="mailto:sijin@example.com" className="hover:text-slate-900 transition-colors">
+                sijin@example.com
+              </a>
+            </div>
+            
+            {/* SNS 링크 */}
+            <div className="flex justify-center gap-3 mt-4">
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* 네비게이션 메뉴 */}
+      <nav className="flex-1 p-6">
+        <ul className="space-y-2">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeSection === item.id;
+            
+            return (
+              <li key={item.id}>
+                <button 
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${
+                    isActive 
+                      ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
+                      : 'hover:bg-slate-100 text-slate-700'
+                  }`}
+                  onClick={() => onSectionChange(item.id)}
+                >
+                  <Icon className={`h-5 w-5 ${isActive ? 'text-blue-600' : 'text-slate-500'}`} />
+                  <span>{item.label}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+      
+      {/* 하단 정보 */}
+      <div className="p-6 border-t border-slate-200">
+        <div className="text-center text-xs text-slate-400">
+          <p>© 2025 시진 전</p>
+          <p className="mt-1">Built with Next.js & Notion</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+#### 6.1.2. 메인 레이아웃 컴포넌트
+
+```tsx
+import { useState } from 'react';
+import { Sidebar } from '@/components/Sidebar';
+import { HomeSection } from '@/components/sections/HomeSection';
+import { ProjectsSection } from '@/components/sections/ProjectsSection';
+import { AboutSection } from '@/components/sections/AboutSection';
+import { ContactSection } from '@/components/sections/ContactSection';
+
+export function MainLayout() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const renderActiveSection = () => {
+    switch (activeSection) {
+      case 'home':
+        return <HomeSection />;
+      case 'projects':
+        return <ProjectsSection />;
+      case 'about':
+        return <AboutSection />;
+      case 'contact':
+        return <ContactSection />;
+      default:
+        return <HomeSection />;
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-white">
+      <Sidebar 
+        activeSection={activeSection} 
+        onSectionChange={setActiveSection} 
+      />
+      
+      {/* 메인 콘텐츠 영역 */}
+      <main className="flex-1 ml-0 md:ml-80 pt-16 md:pt-0">
+        <div className="p-4 md:p-8">
+          {renderActiveSection()}
+        </div>
+      </main>
+    </div>
+  );
+}
+```
+
+### 6.2. Card Component
 
 #### Basic Card
 ```tsx
@@ -1034,20 +1461,133 @@ import { motion } from 'framer-motion';
 
 ## 9. 반응형 디자인 (Responsive Design)
 
-### 9.1. 브레이크포인트
+### 9.1. 사이드바 반응형 레이아웃
+
+#### 9.1.1. 브레이크포인트별 레이아웃 전략
+
+```typescript
+// 사이드바 반응형 브레이크포인트
+const sidebarBreakpoints = {
+  mobile: '< 768px',    // 모바일: 사이드바 숨김, 햄버거 메뉴
+  tablet: '768px - 1024px', // 태블릿: 축소된 사이드바 또는 오버레이
+  desktop: '> 1024px'   // 데스크톱: 전체 사이드바 표시
+}
+```
+
+#### 9.1.2. 모바일 레이아웃 (768px 미만)
+
+```tsx
+// 모바일: 햄버거 메뉴 + 오버레이 사이드바
+<div className="flex min-h-screen bg-white">
+  {/* 모바일 헤더 */}
+  <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 md:hidden">
+    <div className="flex items-center justify-between p-4">
+      <h1 className="text-lg font-semibold">시진 전</h1>
+      <button 
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="p-2 rounded-lg hover:bg-slate-100"
+      >
+        <Menu className="h-6 w-6" />
+      </button>
+    </div>
+  </header>
+
+  {/* 모바일 오버레이 사이드바 */}
+  {mobileMenuOpen && (
+    <div className="fixed inset-0 z-40 md:hidden">
+      {/* 오버레이 배경 */}
+      <div 
+        className="fixed inset-0 bg-black/50"
+        onClick={() => setMobileMenuOpen(false)}
+      />
+      
+      {/* 사이드바 */}
+      <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200 transform transition-transform">
+        {/* 모바일 사이드바 내용 - 데스크톱과 동일하지만 더 컴팩트 */}
+      </aside>
+    </div>
+  )}
+
+  {/* 모바일 메인 콘텐츠 */}
+  <main className="flex-1 pt-16 md:pt-0 md:ml-80">
+    <div className="p-4 md:p-8">
+      {/* 콘텐츠 */}
+    </div>
+  </main>
+</div>
+```
+
+#### 9.1.3. 태블릿 레이아웃 (768px - 1024px)
+
+```tsx
+// 태블릿: 축소된 사이드바 또는 토글 가능한 사이드바
+<div className="flex min-h-screen bg-white">
+  {/* 태블릿 사이드바 - 축소된 버전 */}
+  <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-10 hidden lg:block">
+    <div className="flex flex-col h-full">
+      {/* 프로필 섹션 - 더 컴팩트 */}
+      <div className="p-4 border-b border-slate-200">
+        <div className="relative w-16 h-16 mx-auto mb-3">
+          <Image
+            src="/profile.jpg"
+            alt="Profile"
+            fill
+            className="rounded-full object-cover"
+          />
+        </div>
+        <div className="text-center">
+          <h1 className="text-lg font-semibold text-slate-900 mb-1">시진 전</h1>
+          <p className="text-xs text-slate-600 mb-3">Frontend Developer</p>
+          {/* SNS 링크 - 아이콘만 */}
+          <div className="flex justify-center gap-2">
+            <a href="#" className="text-slate-400 hover:text-slate-600">
+              <Github className="h-4 w-4" />
+            </a>
+            <a href="#" className="text-slate-400 hover:text-slate-600">
+              <Linkedin className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      {/* 네비게이션 - 아이콘 + 텍스트 */}
+      <nav className="flex-1 p-4">
+        <ul className="space-y-1">
+          <li>
+            <button className="w-full flex items-center gap-3 px-3 py-2 text-left rounded-lg hover:bg-slate-100">
+              <Home className="h-4 w-4 text-slate-500" />
+              <span className="text-sm text-slate-700">홈</span>
+            </button>
+          </li>
+          {/* 기타 메뉴 아이템들 */}
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  {/* 태블릿 메인 콘텐츠 */}
+  <main className="flex-1 ml-0 lg:ml-64">
+    <div className="p-6">
+      {/* 콘텐츠 */}
+    </div>
+  </main>
+</div>
+```
+
+### 9.2. 브레이크포인트
 
 ```typescript
 // Tailwind Breakpoints
 const breakpoints = {
   sm: '640px',    // Mobile landscape
   md: '768px',    // Tablet
-  lg: '1024px',   // Desktop
+  lg: '1024px',   // Desktop (사이드바 표시)
   xl: '1280px',   // Large desktop
   '2xl': '1536px' // Extra large
 }
 ```
 
-### 9.2. 모바일 우선 (Mobile-First)
+### 9.3. 모바일 우선 (Mobile-First)
 
 ```tsx
 // ✅ Good: 모바일 우선 접근
@@ -1456,6 +1996,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
 | 버전 | 날짜 | 변경 내용 | 작성자 |
 |------|------|-----------|--------|
+| 1.1 | 2025.10.18 | 사이드바 기반 레이아웃 추가 - Zolplay 스타일 참고, 프로필 섹션, 반응형 디자인 | AI Assistant |
 | 1.0 | 2025.10.18 | 초안 작성 - shadcn UI 기반, 라이트모드, Zolplay 영감 | AI Assistant |
 
 ---

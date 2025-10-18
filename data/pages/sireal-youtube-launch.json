@@ -1,0 +1,21 @@
+{
+  "id": "29092523-5e34-8059-870c-c526a49bad45",
+  "pageType": "Project",
+  "slug": "sireal-youtube-launch",
+  "title": "SIREAL YouTube",
+  "metaDescription": "SIREAL은 AI·노션·창의 전략을 결합한 1인 기업 브랜딩 프로젝트로, 실무 중심의 AI 활용법과 비즈니스 혁신 인사이트를 영상으로 제공합니다.",
+  "category": "YouTube",
+  "tags": [
+    "Sireal",
+    "AI콘텐츠",
+    "브랜딩",
+    "Notion",
+    "창의비즈니스",
+    "1인기업"
+  ],
+  "thumbnail": "https://prod-files-secure.s3.us-west-2.amazonaws.com/f462e2f8-2a8e-4bfb-a91b-33c438bd03a3/c35c6a43-77a3-43a8-afca-0993ef313632/1._youtube_1280x720.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466QFJ4VZPB%2F20251018%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251018T101216Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEA8aCXVzLXdlc3QtMiJHMEUCIQCZhQz9hLTOJKlFWbHazilhk1mWHnPsfRWSzv1EwFCMWgIgdSxDJMbDP2oVvJhZmTldi1GUhoGnC2SlEGr13R4L%2F%2BQqiAQIuP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDC6zLLbgHAbmTmIGcyrcAyo5GTJnUYgV2rSQ2hTmOigLw8eu7tMmhi5Lf%2BxkR3RpoLzBD%2BCQft5qMU%2FEOxhUJFCls53h1%2FPcB3QkMUUYAXdMyIDteGI%2Bfn4bje5jJzrWOM66chuZ3IWaDC5YR4o0xsR5V0EDmCRkeILXevg7IbrYqmTumGPnQumHNl%2FCL5TcjmcaVWmrGrhLs4PRWyky9JHkUR0jcxCAjzMKy67qbtBb77wz65kB0vdFWzXEUQRSRsKHM4GpqTcMFTICFt%2FmYX%2FXYNdiNdnEUNRzTUqZSeEp7srzgo4tDK0w934H%2B9tyDP%2BIIoHWfzlhN6zdJ4IZktPKNmJuJIcSIAyVGZa6UvuPUlMT6Fr69tejFsV%2BpCpfljeQD%2BK2qWpaSOlYUwCME6gLB7loQvTI93sMuIenTAYXQ2G5Cdkuy3Y2AoJPPICJZ2pYPcKIzNJjRg%2BcS%2ByajS7ZNnghc8HACIh47vFirSn0%2BpgAuBu83mjR4SQC6K5r20ni0LMK7UA611497TpqqVXH9UlGsvMe4wznuYl%2B8XEO4bVFkhPBiIYPU46ZhVVcwgQYSHv9xjsxwfdQgoLbysjIKmEbcBI5puan4d5lwhQO2NMw8Nvc1hyta7bWV4abPSsTMFmGYfcAdRxDMNz7zMcGOqUBKMe4S%2F7WZrXjnfNxOLObFFsr6LcOY94v6Z8jha2lTLhskWG099z3opPaH8k2d%2F2BCDvxWmvJ9yjVUJOHT%2Bs9ttgCpNui5Vb0aHIH7JMy82iHnsuFlzbv0JacpkRNRDqRGu14ytcNwIUIzMLEvwdY6b%2FJxkQJ06P6VJ9%2B35V6vGaDggAMwvXxULGxNh%2BlqPUmXHAzQsHOuHUCxWeGPCr6Y0Mdu6cH&X-Amz-Signature=f8f49981e1b5b785274c7ca7628ee424338b3aed827f3640c6a44ea4dc6031d1&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+  "publishDate": "2025-10-18",
+  "lastEditedTime": "2025-10-18T09:45:00.000Z",
+  "published": true,
+  "content": "\n### 프로젝트 개요\n\n\n이 프로젝트는 **Notion을 CMS(콘텐츠 관리 시스템)**로 활용해, **자동으로 포트폴리오 웹사이트를 생성하는 시스템**입니다.\n\n\n참고 영상: _“절대 놓치지 마세요 - 노션 AI로 생산성 300% 상승한 비결 (Make with Notion 2025)”_ [절대 놓치지 마세요 - 노션 AI로 생산성 300% 상승한 비결 (Make with Notion 2025)](https://youtu.be/IFrZLrOfsfQ?si=6fZrwKXCMxlxwosP)\n\n\n---\n\n\n### 주요 기능\n\n- Notion에서 작성한 데이터(프로젝트, 문서, 이미지)를 자동으로 동기화\n- 빌드 타임에 정적으로 사이트 생성(SSG)\n- **shadcn UI 디자인 시스템**을 적용해 일관된 UI 구성\n- 콘텐츠 작성 후 **즉시 발행 버튼**으로 빠르게 웹에 공개\n\n---\n\n\n### 기술 스택\n\n- **Frontend / Static Site Generator**: (예: Next.js, Astro 등)\n- **CMS**: Notion API 연동\n- **UI 시스템**: shadcn UI\n- **배포 / 호스팅**: (예: Vercel, Netlify)\n- **자동화 / CI**: Notion 변경 → 빌드 트리거 → 사이트 배포\n"
+}

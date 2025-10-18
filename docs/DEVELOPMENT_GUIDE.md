@@ -1178,156 +1178,432 @@ npx shadcn-ui@latest add sheet
 
 이 명령들은 `src/components/ui/` 디렉토리에 컴포넌트를 생성합니다.
 
-### Step 4.2: Header 컴포넌트
+### Step 4.2: Sidebar 컴포넌트
 
-**파일 생성**: `src/components/Header.tsx`
+**파일 생성**: `src/components/Sidebar.tsx`
 
 ```typescript
-// src/components/Header.tsx
+// src/components/Sidebar.tsx
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import { Home, Briefcase, User, Mail, Github, Linkedin, Twitter, Menu } from 'lucide-react';
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const navItems = [
-    { label: '홈', href: '/' },
-    { label: '소개', href: '/about' },
+interface SidebarProps {
+  activeSection: string;
+  onSectionChange: (section: string) => void;
+}
+
+export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const menuItems = [
+    { id: 'home', label: '홈', icon: Home },
+    { id: 'projects', label: '프로젝트', icon: Briefcase },
+    { id: 'about', label: '소개', icon: User },
+    { id: 'contact', label: '연락하기', icon: Mail },
   ];
-  
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4 max-w-7xl">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors"
-        >
-          Portfolio
-        </Link>
-        
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-slate-600 hover:text-slate-900 transition-colors font-medium"
-            >
-              {item.label}
-            </Link>
-          ))}
+    <>
+      {/* 모바일 헤더 */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 md:hidden">
+        <div className="flex items-center justify-between p-4">
+          <h1 className="text-lg font-semibold">시진 전</h1>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </header>
+
+      {/* 모바일 오버레이 */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div 
+            className="fixed inset-0 bg-black/50"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200">
+            <SidebarContent 
+              activeSection={activeSection} 
+              onSectionChange={(section) => {
+                onSectionChange(section);
+                setMobileMenuOpen(false);
+              }} 
+            />
+          </aside>
+        </div>
+      )}
+
+      {/* 데스크톱 사이드바 */}
+      <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200 z-10 hidden md:block">
+        <SidebarContent activeSection={activeSection} onSectionChange={onSectionChange} />
+      </aside>
+    </>
+  );
+}
+
+function SidebarContent({ activeSection, onSectionChange }: SidebarProps) {
+  const menuItems = [
+    { id: 'home', label: '홈', icon: Home },
+    { id: 'projects', label: '프로젝트', icon: Briefcase },
+    { id: 'about', label: '소개', icon: User },
+    { id: 'contact', label: '연락하기', icon: Mail },
+  ];
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* 프로필 섹션 */}
+      <div className="p-6 border-b border-slate-200">
+        <div className="relative w-24 h-24 mx-auto mb-4">
+          <Image
+            src="/profile.jpg"
+            alt="시진 전"
+            fill
+            className="rounded-full object-cover"
+          />
         </div>
         
-        {/* Mobile Menu */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">메뉴 열기</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right">
-            <div className="flex flex-col gap-4 mt-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-slate-600 hover:text-slate-900 transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
+        <div className="text-center">
+          <h1 className="text-xl font-semibold text-slate-900 mb-2">
+            시진 전
+          </h1>
+          <p className="text-sm text-slate-600 mb-4">
+            Frontend Developer
+          </p>
+          
+          {/* 연락처 정보 */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
+              <Mail className="h-4 w-4" />
+              <a href="mailto:sijin@example.com" className="hover:text-slate-900 transition-colors">
+                sijin@example.com
+              </a>
             </div>
-          </SheetContent>
-        </Sheet>
+            
+            {/* SNS 링크 */}
+            <div className="flex justify-center gap-3 mt-4">
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* 네비게이션 메뉴 */}
+      <nav className="flex-1 p-6">
+        <ul className="space-y-2">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeSection === item.id;
+            
+            return (
+              <li key={item.id}>
+                <button 
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${
+                    isActive 
+                      ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
+                      : 'hover:bg-slate-100 text-slate-700'
+                  }`}
+                  onClick={() => onSectionChange(item.id)}
+                >
+                  <Icon className={`h-5 w-5 ${isActive ? 'text-blue-600' : 'text-slate-500'}`} />
+                  <span>{item.label}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
-    </header>
+      
+      {/* 하단 정보 */}
+      <div className="p-6 border-t border-slate-200">
+        <div className="text-center text-xs text-slate-400">
+          <p>© 2025 시진 전</p>
+          <p className="mt-1">Built with Next.js & Notion</p>
+        </div>
+      </div>
+    </div>
   );
 }
 ```
 
-### Step 4.3: Footer 컴포넌트
+### Step 4.3: MainLayout 컴포넌트
 
-**파일 생성**: `src/components/Footer.tsx`
+**파일 생성**: `src/components/MainLayout.tsx`
 
 ```typescript
-// src/components/Footer.tsx
+// src/components/MainLayout.tsx
+'use client';
 
-import { loadFooterData } from '@/lib/data';
-import { Separator } from '@/components/ui/separator';
+import { useState } from 'react';
+import { Sidebar } from '@/components/Sidebar';
+import { HomeSection } from '@/components/sections/HomeSection';
+import { ProjectsSection } from '@/components/sections/ProjectsSection';
+import { AboutSection } from '@/components/sections/AboutSection';
+import { ContactSection } from '@/components/sections/ContactSection';
 
-export default async function Footer() {
-  const footerData = await loadFooterData();
-  
+export function MainLayout() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const renderActiveSection = () => {
+    switch (activeSection) {
+      case 'home':
+        return <HomeSection />;
+      case 'projects':
+        return <ProjectsSection />;
+      case 'about':
+        return <AboutSection />;
+      case 'contact':
+        return <ContactSection />;
+      default:
+        return <HomeSection />;
+    }
+  };
+
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 mt-24">
-      <div className="container mx-auto px-4 py-12 max-w-7xl">
-        {footerData ? (
-          <div className="prose prose-slate max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: footerData.content }} />
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {/* Default Footer */}
-            <div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">
-                Portfolio
-              </h3>
-              <p className="text-slate-600">
-                Notion으로 관리하는 개인 포트폴리오
-              </p>
+    <div className="flex min-h-screen bg-white">
+      <Sidebar 
+        activeSection={activeSection} 
+        onSectionChange={setActiveSection} 
+      />
+      
+      {/* 메인 콘텐츠 영역 */}
+      <main className="flex-1 ml-0 md:ml-80 pt-16 md:pt-0">
+        <div className="p-4 md:p-8">
+          {renderActiveSection()}
+        </div>
+      </main>
+    </div>
+  );
+}
+```
+
+### Step 4.4: 섹션 컴포넌트들
+
+**파일 생성**: `src/components/sections/HomeSection.tsx`
+
+```typescript
+// src/components/sections/HomeSection.tsx
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+
+interface Project {
+  slug: string;
+  title: string;
+  metaDescription: string;
+  category: string;
+  thumbnail: string;
+  publishDate: string;
+}
+
+export function HomeSection() {
+  // 실제로는 Notion 데이터에서 가져옴
+  const recentProjects: Project[] = [];
+
+  return (
+    <section className="space-y-12">
+      {/* Hero 섹션 */}
+      <div className="text-center py-16">
+        <h1 className="text-5xl font-bold text-slate-900 mb-6">
+          안녕하세요, <span className="text-blue-600">시진</span>입니다
+        </h1>
+        <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          프론트엔드 개발자로서 사용자 경험을 중시하며, 
+          창의적이고 효율적인 웹 솔루션을 만듭니다.
+        </p>
+      </div>
+      
+      {/* 최근 프로젝트 */}
+      <div>
+        <h2 className="text-3xl font-bold text-slate-900 mb-8">
+          최근 프로젝트
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {recentProjects.length > 0 ? (
+            recentProjects.slice(0, 4).map((project) => (
+              <Card key={project.slug} className="group overflow-hidden transition-all duration-300 hover:shadow-lg border-slate-200">
+                <CardContent className="p-0">
+                  <div className="aspect-video overflow-hidden">
+                    <img 
+                      src={project.thumbnail}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  
+                  <div className="p-6">
+                    <Badge className="bg-blue-50 text-blue-600 mb-3">
+                      {project.category}
+                    </Badge>
+                    
+                    <h3 className="text-xl font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-slate-600 line-clamp-2 mb-4">
+                      {project.metaDescription}
+                    </p>
+                    
+                    <div className="flex items-center justify-between text-sm text-slate-500">
+                      <time>{project.publishDate}</time>
+                      <span className="text-blue-500 group-hover:text-blue-600 flex items-center gap-1">
+                        자세히 보기 <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            <div className="col-span-2 text-center py-12">
+              <p className="text-slate-500">아직 프로젝트가 없습니다.</p>
             </div>
-            
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-4">
-                링크
-              </h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="/" className="text-slate-600 hover:text-slate-900">
-                    홈
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="text-slate-600 hover:text-slate-900">
-                    소개
-                  </a>
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-sm font-semibold text-slate-900 mb-4">
-                소셜
-              </h4>
-              <div className="flex gap-4">
-                <a href="#" className="text-slate-600 hover:text-slate-900">
-                  GitHub
-                </a>
-                <a href="#" className="text-slate-600 hover:text-slate-900">
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-        
-        <Separator className="my-8" />
-        
-        <div className="text-center">
-          <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} All rights reserved.
-          </p>
+          )}
         </div>
       </div>
-    </footer>
+    </section>
+  );
+}
+```
+
+**파일 생성**: `src/components/sections/ProjectsSection.tsx`
+
+```typescript
+// src/components/sections/ProjectsSection.tsx
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+
+export function ProjectsSection() {
+  return (
+    <section className="space-y-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-4xl font-bold text-slate-900">
+          프로젝트
+        </h1>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">전체</Button>
+          <Button variant="outline" size="sm">웹 개발</Button>
+          <Button variant="outline" size="sm">모바일</Button>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 프로젝트 그리드 - 실제로는 Notion 데이터에서 가져옴 */}
+        <div className="text-center py-12">
+          <p className="text-slate-500">프로젝트를 불러오는 중...</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**파일 생성**: `src/components/sections/AboutSection.tsx`
+
+```typescript
+// src/components/sections/AboutSection.tsx
+export function AboutSection() {
+  return (
+    <section className="space-y-8">
+      <div>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">
+          소개
+        </h1>
+        <div className="prose prose-lg max-w-none">
+          {/* Notion About 페이지 내용이 여기에 렌더링됨 */}
+          <div className="text-center py-12">
+            <p className="text-slate-500">소개 내용을 불러오는 중...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**파일 생성**: `src/components/sections/ContactSection.tsx`
+
+```typescript
+// src/components/sections/ContactSection.tsx
+import { Card, CardContent } from '@/components/ui/card';
+import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
+
+export function ContactSection() {
+  return (
+    <section className="space-y-8">
+      <div>
+        <h1 className="text-4xl font-bold text-slate-900 mb-6">
+          연락하기
+        </h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* 연락처 정보 */}
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold text-slate-900 mb-4">
+                연락처 정보
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-slate-500" />
+                  <a href="mailto:sijin@example.com" className="text-slate-600 hover:text-slate-900 transition-colors">
+                    sijin@example.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Github className="h-5 w-5 text-slate-500" />
+                  <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors">
+                    GitHub
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Linkedin className="h-5 w-5 text-slate-500" />
+                  <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors">
+                    LinkedIn
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Twitter className="h-5 w-5 text-slate-500" />
+                  <a href="#" className="text-slate-600 hover:text-slate-900 transition-colors">
+                    Twitter
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* 메시지 폼 */}
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold text-slate-900 mb-4">
+                메시지 보내기
+              </h2>
+              <p className="text-slate-600 mb-4">
+                프로젝트 문의나 협업 제안이 있으시면 언제든 연락주세요.
+              </p>
+              <Button className="w-full">
+                이메일로 연락하기
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
   );
 }
 ```
@@ -1545,8 +1821,6 @@ Next.js App Router를 사용하여 실제 페이지를 구현합니다.
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import './globals.css';
 
 const inter = Inter({
@@ -1557,14 +1831,20 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Portfolio',
-    template: '%s | Portfolio',
+    default: '시진 전 - Frontend Developer',
+    template: '%s | 시진 전',
   },
-  description: 'Notion으로 관리하는 개인 포트폴리오',
-  keywords: ['portfolio', 'projects', 'blog', 'notion'],
-  authors: [{ name: 'Your Name' }],
-  creator: 'Your Name',
+  description: '프론트엔드 개발자 시진 전의 포트폴리오',
+  keywords: ['포트폴리오', '프론트엔드', '개발자', 'React', 'Next.js'],
+  authors: [{ name: '시진 전' }],
+  creator: '시진 전',
   metadataBase: new URL('https://your-domain.vercel.app'),
+  openGraph: {
+    title: '시진 전 - Frontend Developer',
+    description: '프론트엔드 개발자 시진 전의 포트폴리오',
+    type: 'website',
+    locale: 'ko_KR',
+  },
 };
 
 export default function RootLayout({
@@ -1574,10 +1854,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={inter.variable}>
-      <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="font-sans antialiased">
+        {children}
       </body>
     </html>
   );
@@ -1591,82 +1869,10 @@ export default function RootLayout({
 ```typescript
 // src/app/page.tsx
 
-import { loadHomeData, loadAllProjects } from '@/lib/data';
-import ProjectCard from '@/components/ProjectCard';
-import MarkdownRenderer from '@/components/MarkdownRenderer';
+import { MainLayout } from '@/components/MainLayout';
 
-export const dynamic = 'force-static';
-
-export default async function HomePage() {
-  const homeData = await loadHomeData();
-  const projects = await loadAllProjects();
-  
-  return (
-    <div className="container mx-auto px-4 py-12 max-w-7xl">
-      {/* Hero Section */}
-      <section className="mb-16">
-        {homeData ? (
-          <>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6">
-              {homeData.title}
-            </h1>
-            {homeData.metaDescription && (
-              <p className="text-xl md:text-2xl text-slate-600 leading-relaxed mb-8">
-                {homeData.metaDescription}
-              </p>
-            )}
-            {homeData.content && (
-              <div className="prose prose-lg max-w-3xl">
-                <MarkdownRenderer content={homeData.content} />
-              </div>
-            )}
-          </>
-        ) : (
-          <>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6">
-              안녕하세요, 저는 [이름]입니다
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-600 leading-relaxed">
-              [직업/분야]로 활동하며 [설명]을 하고 있습니다.
-            </p>
-          </>
-        )}
-      </section>
-      
-      {/* Projects Section */}
-      <section>
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-8">
-          프로젝트
-        </h2>
-        
-        {projects.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-slate-500">
-              아직 게시된 프로젝트가 없습니다.
-            </p>
-            <p className="text-sm text-slate-400 mt-2">
-              Notion 데이터베이스에 프로젝트를 추가해주세요.
-            </p>
-          </div>
-        )}
-      </section>
-    </div>
-  );
-}
-
-export async function generateMetadata() {
-  const homeData = await loadHomeData();
-  
-  return {
-    title: homeData?.title || 'Portfolio',
-    description: homeData?.metaDescription || 'Notion으로 관리하는 개인 포트폴리오',
-  };
+export default function HomePage() {
+  return <MainLayout />;
 }
 ```
 

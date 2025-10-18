@@ -1,11 +1,65 @@
 {
-  "lastSyncTime": "",
-  "totalPages": 0,
+  "lastSyncTime": "2025-10-18T10:12:24.314Z",
+  "totalPages": 3,
   "pagesByType": {
-    "home": null,
-    "projects": [],
-    "footer": null,
+    "home": {
+      "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
+      "pageType": "Home",
+      "slug": "home",
+      "title": "Home",
+      "category": null,
+      "publishDate": "2025-10-18",
+      "published": true
+    },
+    "projects": [
+      {
+        "id": "29092523-5e34-8059-870c-c526a49bad45",
+        "pageType": "Project",
+        "slug": "sireal-youtube-launch",
+        "title": "SIREAL YouTube",
+        "category": "YouTube",
+        "publishDate": "2025-10-18",
+        "published": true
+      }
+    ],
+    "footer": {
+      "id": "29092523-5e34-80bf-80d4-dfa14497d154",
+      "pageType": "Footer",
+      "slug": "footer",
+      "title": "Footer",
+      "category": null,
+      "publishDate": "2025-10-18T10:12:16.447Z",
+      "published": true
+    },
     "about": null
   },
-  "pages": []
+  "pages": [
+    {
+      "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
+      "pageType": "Home",
+      "slug": "home",
+      "title": "Home",
+      "category": null,
+      "publishDate": "2025-10-18",
+      "published": true
+    },
+    {
+      "id": "29092523-5e34-8059-870c-c526a49bad45",
+      "pageType": "Project",
+      "slug": "sireal-youtube-launch",
+      "title": "SIREAL YouTube",
+      "category": "YouTube",
+      "publishDate": "2025-10-18",
+      "published": true
+    },
+    {
+      "id": "29092523-5e34-80bf-80d4-dfa14497d154",
+      "pageType": "Footer",
+      "slug": "footer",
+      "title": "Footer",
+      "category": null,
+      "publishDate": "2025-10-18T10:12:16.447Z",
+      "published": true
+    }
+  ]
 }

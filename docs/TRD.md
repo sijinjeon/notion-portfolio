@@ -10,7 +10,8 @@
 
 본 문서는 "Notion 기반 개인 웹페이지 자동화 솔루션"의 기술적 구현 세부사항을 정의합니다. PRD v1.8에 명시된 제품 요구사항을 실제 시스템으로 구현하기 위한 아키텍처, 기술 스택, API 설계, 데이터 모델, 워크플로우 등을 상세히 기술합니다.
 
-**주요 변경사항 (v1.1):**
+**주요 변경사항 (v1.2):**
+- **사이드바 기반 레이아웃**: 고정 사이드바와 동적 콘텐츠 영역으로 구성된 SPA 스타일 레이아웃
 - **통합 데이터베이스 구조**: 모든 페이지(Home, Project, Footer, About 등)를 하나의 Notion 데이터베이스에서 관리
 - **PageType 속성 추가**: 페이지 유형을 구분하여 적절한 렌더링 및 라우팅 처리
 - **단순화된 동기화**: 단일 DB 스캔으로 모든 페이지 타입 동기화
@@ -104,10 +105,14 @@
 
 #### 2.2.4. Next.js/Astro Application (Presentation Layer)
 - **역할**: 정적 웹사이트 생성 및 서빙
-- **주요 페이지**:
-  - 메인 페이지 (프로젝트 목록)
-  - 상세 페이지 (개별 프로젝트)
-  - 공통 레이아웃 (Header, Footer)
+- **레이아웃 구조**:
+  - **고정 사이드바**: 프로필, 네비게이션 메뉴 (320px 고정)
+  - **동적 콘텐츠 영역**: 메뉴 선택에 따라 변경되는 섹션
+- **주요 섹션**:
+  - Home 섹션 (소개 및 최근 프로젝트)
+  - Projects 섹션 (전체 프로젝트 목록)
+  - About 섹션 (자기소개)
+  - Contact 섹션 (연락처 정보)
 
 ### 2.3. 데이터 플로우
 
@@ -1035,30 +1040,38 @@ syncAllPages();
 notion-portfolio/
 ├── public/
 │   ├── favicon.ico
+│   ├── profile.jpg             # 프로필 이미지
 │   └── images/
 ├── src/
 │   ├── app/                    # App Router (Next.js 14+)
 │   │   ├── layout.tsx          # 루트 레이아웃
-│   │   ├── page.tsx            # 메인 페이지 (/)
-│   │   ├── projects/
+│   │   ├── page.tsx            # 메인 페이지 (MainLayout 렌더링)
+│   │   ├── projects/           # 프로젝트 상세 (선택적)
 │   │   │   └── [slug]/
 │   │   │       └── page.tsx    # 프로젝트 상세 (/projects/[slug])
 │   │   └── globals.css
 │   ├── components/
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
+│   │   ├── Sidebar.tsx         # 사이드바 컴포넌트
+│   │   ├── MainLayout.tsx      # 메인 레이아웃 (사이드바 + 콘텐츠)
+│   │   ├── sections/           # 섹션 컴포넌트
+│   │   │   ├── HomeSection.tsx
+│   │   │   ├── ProjectsSection.tsx
+│   │   │   ├── AboutSection.tsx
+│   │   │   └── ContactSection.tsx
 │   │   ├── ProjectCard.tsx
 │   │   └── MarkdownRenderer.tsx
-│   └── lib/
-│       ├── notion.ts           # Notion API 래퍼
-│       └── data.ts             # 로컬 데이터 로더
+│   ├── lib/
+│   │   ├── notion.ts           # Notion API 래퍼
+│   │   └── data.ts             # 로컬 데이터 로더
+│   └── types/
+│       └── index.ts
 ├── data/                       # 동기화된 Notion 데이터
 │   ├── index.json
-│   ├── pages/
-│   │   ├── project-1.json
-│   │   └── project-2.json
-│   └── settings/
-│       └── footer.json
+│   └── pages/
+│       ├── home.json
+│       ├── footer.json
+│       ├── about.json
+│       └── [project-slug].json
 ├── scripts/                    # 동기화 스크립트
 ├── .github/
 │   └── workflows/
@@ -1118,62 +1131,60 @@ async function getProjects(): Promise<PageData[]> {
   );
 }
 
-export default async function HomePage() {
-  const homeData = await getHomeData();
-  const projects = await getProjects();
-  
-  return (
-    <main className="container mx-auto px-4 py-12">
-      {/* Home 페이지 콘텐츠 (Notion에서 관리) */}
-      <section className="mb-16">
-        {homeData ? (
-          <>
-            <h1 className="text-5xl font-bold mb-4">
-              {homeData.title}
-            </h1>
-            {homeData.metaDescription && (
-              <p className="text-xl text-gray-600 mb-6">
-                {homeData.metaDescription}
-              </p>
-            )}
-            {/* Home 페이지의 본문 콘텐츠 렌더링 (선택적) */}
-            {homeData.content && (
-              <div className="prose max-w-none mb-8">
-                <MarkdownRenderer content={homeData.content} />
-              </div>
-            )}
-          </>
-        ) : (
-          <>
-            <h1 className="text-5xl font-bold mb-4">
-              안녕하세요, 저는 [이름]입니다
-            </h1>
-            <p className="text-xl text-gray-600">
-              [직업/분야]로 활동하며 [설명]을 하고 있습니다.
-            </p>
-          </>
-        )}
-      </section>
-      
-      {/* 프로젝트 목록 */}
-      <section>
-        <h2 className="text-3xl font-bold mb-8">프로젝트</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+export default function HomePage() {
+  return <MainLayout />;
 }
 
-// 메타데이터
-export async function generateMetadata() {
-  return {
-    title: '[이름]의 포트폴리오',
-    description: '[직업]의 프로젝트와 인사이트를 공유하는 공간입니다.',
+// MainLayout 컴포넌트는 클라이언트 컴포넌트로 구현
+// src/components/MainLayout.tsx 참조
+```
+
+**사이드바 기반 레이아웃 구조**:
+
+```typescript
+// src/components/MainLayout.tsx
+'use client';
+
+import { useState } from 'react';
+import { Sidebar } from '@/components/Sidebar';
+import { HomeSection } from '@/components/sections/HomeSection';
+import { ProjectsSection } from '@/components/sections/ProjectsSection';
+import { AboutSection } from '@/components/sections/AboutSection';
+import { ContactSection } from '@/components/sections/ContactSection';
+
+export function MainLayout() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const renderActiveSection = () => {
+    switch (activeSection) {
+      case 'home':
+        return <HomeSection />;
+      case 'projects':
+        return <ProjectsSection />;
+      case 'about':
+        return <AboutSection />;
+      case 'contact':
+        return <ContactSection />;
+      default:
+        return <HomeSection />;
+    }
   };
+
+  return (
+    <div className="flex min-h-screen bg-white">
+      <Sidebar 
+        activeSection={activeSection} 
+        onSectionChange={setActiveSection} 
+      />
+      
+      {/* 메인 콘텐츠 영역 */}
+      <main className="flex-1 ml-0 md:ml-80 pt-16 md:pt-0">
+        <div className="p-4 md:p-8">
+          {renderActiveSection()}
+        </div>
+      </main>
+    </div>
+  );
 }
 ```
 
@@ -2665,6 +2676,7 @@ https://your-portfolio.vercel.app/admin
 |------|------|-----------|--------|
 | 1.0 | 2025.10.18 | 초안 작성 | AI Assistant |
 | 1.1 | 2025.10.18 | 통합 데이터베이스 구조로 변경 (PageType 추가, Footer 통합) | AI Assistant |
+| 1.2 | 2025.10.18 | 사이드바 기반 레이아웃 구조 추가 (고정 사이드바 + 동적 섹션) | AI Assistant |
 
 ---
 

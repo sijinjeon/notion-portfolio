@@ -2,8 +2,6 @@
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import './globals.css';
 
 const inter = Inter({
@@ -14,14 +12,20 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Portfolio',
-    template: '%s | Portfolio',
+    default: '시진 전 - Frontend Developer',
+    template: '%s | 시진 전',
   },
-  description: 'Notion으로 관리하는 개인 포트폴리오',
-  keywords: ['portfolio', 'projects', 'blog', 'notion'],
-  authors: [{ name: 'Your Name' }],
-  creator: 'Your Name',
-  metadataBase: new URL('https://your-domain.vercel.app'),
+  description: '프론트엔드 개발자 시진 전의 포트폴리오',
+  keywords: ['포트폴리오', '프론트엔드', '개발자', 'React', 'Next.js', 'TypeScript'],
+  authors: [{ name: '시진 전' }],
+  creator: '시진 전',
+  metadataBase: new URL('https://notion-portfolio-pi.vercel.app'),
+  openGraph: {
+    title: '시진 전 - Frontend Developer',
+    description: '프론트엔드 개발자 시진 전의 포트폴리오',
+    type: 'website',
+    locale: 'ko_KR',
+  },
 };
 
 export default function RootLayout({
@@ -31,10 +35,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={inter.variable}>
-      <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="font-sans antialiased">
+        {children}
       </body>
     </html>
   );

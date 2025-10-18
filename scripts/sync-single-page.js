@@ -1,5 +1,7 @@
 // scripts/sync-single-page.js
 
+require('dotenv').config({ path: '.env.local' });
+
 const fs = require('fs').promises;
 const path = require('path');
 const { Client } = require('@notionhq/client');

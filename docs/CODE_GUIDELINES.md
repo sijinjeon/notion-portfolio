@@ -54,16 +54,19 @@ notion-portfolio/
 ├── src/                        # 소스 코드
 │   ├── app/                    # Next.js App Router
 │   │   ├── layout.tsx          # 루트 레이아웃
-│   │   ├── page.tsx            # 메인 페이지
-│   │   ├── projects/           # 프로젝트 라우트
+│   │   ├── page.tsx            # 메인 페이지 (MainLayout 렌더링)
+│   │   ├── projects/           # 프로젝트 라우트 (선택적)
 │   │   │   └── [slug]/
 │   │   │       └── page.tsx
-│   │   ├── about/              # About 페이지 (선택)
-│   │   │   └── page.tsx
 │   │   └── globals.css
 │   ├── components/             # React 컴포넌트
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
+│   │   ├── Sidebar.tsx         # 사이드바 컴포넌트
+│   │   ├── MainLayout.tsx      # 메인 레이아웃 컴포넌트
+│   │   ├── sections/           # 섹션 컴포넌트
+│   │   │   ├── HomeSection.tsx
+│   │   │   ├── ProjectsSection.tsx
+│   │   │   ├── AboutSection.tsx
+│   │   │   └── ContactSection.tsx
 │   │   ├── ProjectCard.tsx
 │   │   └── MarkdownRenderer.tsx
 │   ├── lib/                    # 유틸리티 및 라이브러리
@@ -492,7 +495,7 @@ export default function ProjectCard({
 }
 
 // ❌ Bad: No props interface, inline styles
-export default function ProjectCard({ project }) {
+export default function projectCard({ project }) {
   return (
     <div style={{ padding: '20px', backgroundColor: 'white' }}>
       <h3>{project.title}</h3>
@@ -501,7 +504,177 @@ export default function ProjectCard({ project }) {
 }
 ```
 
-### 5.5. 조건부 렌더링
+### 5.5. 사이드바 기반 레이아웃 컴포넌트
+
+#### Sidebar 컴포넌트 구조
+
+```typescript
+// ✅ Good: 명확한 Props 인터페이스와 상태 관리
+// components/Sidebar.tsx
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { Home, Briefcase, User, Mail, Github, Linkedin, Twitter, Menu } from 'lucide-react';
+
+interface SidebarProps {
+  activeSection: string;
+  onSectionChange: (section: string) => void;
+}
+
+export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const menuItems = [
+    { id: 'home', label: '홈', icon: Home },
+    { id: 'projects', label: '프로젝트', icon: Briefcase },
+    { id: 'about', label: '소개', icon: User },
+    { id: 'contact', label: '연락하기', icon: Mail },
+  ];
+
+  return (
+    <>
+      {/* 모바일 헤더 */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 md:hidden">
+        <div className="flex items-center justify-between p-4">
+          <h1 className="text-lg font-semibold">시진 전</h1>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+            aria-label="메뉴 열기"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </header>
+
+      {/* 모바일 오버레이 사이드바 */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div 
+            className="fixed inset-0 bg-black/50"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="사이드바 닫기"
+          />
+          <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200">
+            <SidebarContent 
+              activeSection={activeSection} 
+              onSectionChange={(section) => {
+                onSectionChange(section);
+                setMobileMenuOpen(false);
+              }} 
+            />
+          </aside>
+        </div>
+      )}
+
+      {/* 데스크톱 사이드바 */}
+      <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200 z-10 hidden md:block">
+        <SidebarContent activeSection={activeSection} onSectionChange={onSectionChange} />
+      </aside>
+    </>
+  );
+}
+```
+
+#### MainLayout 상태 관리
+
+```typescript
+// ✅ Good: 명확한 섹션 전환 로직
+// components/MainLayout.tsx
+'use client';
+
+import { useState } from 'react';
+import { Sidebar } from '@/components/Sidebar';
+import { HomeSection } from '@/components/sections/HomeSection';
+import { ProjectsSection } from '@/components/sections/ProjectsSection';
+import { AboutSection } from '@/components/sections/AboutSection';
+import { ContactSection } from '@/components/sections/ContactSection';
+
+export function MainLayout() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  // ✅ Good: Switch statement for section rendering
+  const renderActiveSection = () => {
+    switch (activeSection) {
+      case 'home':
+        return <HomeSection />;
+      case 'projects':
+        return <ProjectsSection />;
+      case 'about':
+        return <AboutSection />;
+      case 'contact':
+        return <ContactSection />;
+      default:
+        return <HomeSection />;
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-white">
+      <Sidebar 
+        activeSection={activeSection} 
+        onSectionChange={setActiveSection} 
+      />
+      
+      <main className="flex-1 ml-0 md:ml-80 pt-16 md:pt-0">
+        <div className="p-4 md:p-8">
+          {renderActiveSection()}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+// ❌ Bad: 복잡한 조건문 중첩
+export function MainLayout() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  return (
+    <div>
+      {activeSection === 'home' ? <HomeSection /> : 
+       activeSection === 'projects' ? <ProjectsSection /> : 
+       activeSection === 'about' ? <AboutSection /> : <HomeSection />}
+    </div>
+  );
+}
+```
+
+#### 섹션 컴포넌트 패턴
+
+```typescript
+// ✅ Good: 일관된 섹션 컴포넌트 구조
+// components/sections/HomeSection.tsx
+
+export function HomeSection() {
+  return (
+    <section className="space-y-12">
+      {/* 섹션 헤더 */}
+      <div className="text-center py-16">
+        <h1 className="text-5xl font-bold text-slate-900 mb-6">
+          안녕하세요, <span className="text-blue-600">시진</span>입니다
+        </h1>
+        <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          프론트엔드 개발자로서 사용자 경험을 중시하며, 
+          창의적이고 효율적인 웹 솔루션을 만듭니다.
+        </p>
+      </div>
+      
+      {/* 섹션 콘텐츠 */}
+      <div>
+        <h2 className="text-3xl font-bold text-slate-900 mb-8">
+          최근 프로젝트
+        </h2>
+        {/* 프로젝트 목록 */}
+      </div>
+    </section>
+  );
+}
+
+// ✅ Good: 각 섹션은 독립적이고 재사용 가능
+```
+
+### 5.6. 조건부 렌더링
 
 ```typescript
 // ✅ Good: Early return for null cases
@@ -1359,6 +1532,7 @@ main              # 프로덕션 배포
 | 버전 | 날짜 | 변경 내용 | 작성자 |
 |------|------|-----------|--------|
 | 1.0 | 2025.10.18 | 초안 작성 | AI Assistant |
+| 1.1 | 2025.10.18 | 사이드바 기반 레이아웃 컴포넌트 가이드라인 추가 (Sidebar, MainLayout, Section 패턴) | AI Assistant |
 
 ---
 
