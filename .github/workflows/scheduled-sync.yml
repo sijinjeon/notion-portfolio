@@ -1,0 +1,65 @@
+name: Scheduled Notion Sync
+
+on:
+  schedule:
+    # 매 10분마다 실행 (UTC 기준)
+    - cron: '*/10 * * * *'
+  workflow_dispatch:  # 수동 실행 허용
+  repository_dispatch: # /api/trigger-sync 엔드포인트에서 호출
+    types: [notion-full-sync]
+
+jobs:
+  sync-all:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Sync all pages from Notion
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: |
+          node scripts/sync-all-pages.js
+      
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit and push changes
+        if: steps.git-check.outputs.has_changes == 'true'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add data/
+          git commit -m "sync: scheduled update $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
+      
+      - name: Report sync results
+        run: |
+          if [[ "${{ steps.git-check.outputs.has_changes }}" == "true" ]]; then
+            echo "✅ Sync completed with changes"
+          else
+            echo "ℹ️ No changes detected"
+          fi
