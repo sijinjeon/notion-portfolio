@@ -19,7 +19,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
       {/* 모바일 헤더 */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 md:hidden">
         <div className="flex items-center justify-between p-4">
-          <h1 className="text-lg font-semibold">시진 전</h1>
+          <h1 className="text-lg font-semibold">전시진</h1>
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
@@ -73,40 +73,43 @@ function SidebarContent({ activeSection, onSectionChange }: SidebarContentProps)
         <div className="relative w-24 h-24 mx-auto mb-4">
           <Image
             src="/profile.jpg"
-            alt="시진 전"
+            alt="전시진"
             fill
-            className="rounded-full object-cover"
+            className="rounded-full object-cover border-2 border-slate-200"
             priority
+            sizes="96px"
           />
         </div>
         
         <div className="text-center">
           <h1 className="text-xl font-semibold text-slate-900 mb-2">
-            시진 전
+            전시진
           </h1>
-          <p className="text-sm text-slate-600 mb-4">
-            Frontend Developer
+          <p className="text-sm text-slate-600 mb-4 leading-relaxed">
+            No-Code Automation Consultant |<br />
+            Business Process Optimization |<br />
+            AI Integration Specialist
           </p>
           
           {/* 연락처 정보 */}
           <div className="space-y-2">
             <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
               <Mail className="h-4 w-4" />
-              <a href="mailto:sijin@example.com" className="hover:text-slate-900 transition-colors">
-                sijin@example.com
+              <a href="mailto:milk@sireal.co" className="hover:text-slate-900 transition-colors">
+              milk@sireal.co
               </a>
             </div>
             
             {/* SNS 링크 */}
-            <div className="flex justify-center gap-3 mt-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 transition-colors" aria-label="GitHub">
-                <Github className="h-5 w-5" />
+            <div className="flex justify-center gap-2 mt-6">
+              <a href="https://github.com/sijinjeon" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all" aria-label="GitHub">
+                <Github className="h-4 w-4" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 transition-colors" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
+              <a href="https://www.linkedin.com/in/sijinjeon/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all" aria-label="LinkedIn">
+                <Linkedin className="h-4 w-4" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 transition-colors" aria-label="Twitter">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.threads.com/@sireal_co" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-300 transition-all" aria-label="Threads">
+                <Twitter className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -115,24 +118,22 @@ function SidebarContent({ activeSection, onSectionChange }: SidebarContentProps)
       
       {/* 네비게이션 메뉴 */}
       <nav className="flex-1 p-6">
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {menuItems.map((item) => {
-            const Icon = item.icon;
             const isActive = activeSection === item.id;
             
             return (
               <li key={item.id}>
                 <button 
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-colors ${
+                  className={`w-full text-left transition-colors ${
                     isActive 
-                      ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
-                      : 'hover:bg-slate-100 text-slate-700'
+                      ? 'text-slate-900 font-medium' 
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                   onClick={() => onSectionChange(item.id)}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <Icon className={`h-5 w-5 ${isActive ? 'text-blue-600' : 'text-slate-500'}`} />
-                  <span>{item.label}</span>
+                  <span className="text-sm tracking-wide uppercase">{item.label}</span>
                 </button>
               </li>
             );
@@ -143,8 +144,8 @@ function SidebarContent({ activeSection, onSectionChange }: SidebarContentProps)
       {/* 하단 정보 */}
       <div className="p-6 border-t border-slate-200">
         <div className="text-center text-xs text-slate-400">
-          <p>© 2025 시진 전</p>
-          <p className="mt-1">Built with Next.js & Notion</p>
+          <p>© 2025 전시진</p>
+          <p className="mt-1">Built with Cursor & Notion</p>
         </div>
       </div>
     </div>

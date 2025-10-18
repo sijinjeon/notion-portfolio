@@ -32,12 +32,12 @@ export function MainLayout() {
         onSectionChange={setActiveSection} 
       />
       
-      {/* 메인 콘텐츠 영역 */}
-      <main className="flex-1 ml-0 md:ml-80 pt-16 md:pt-0">
-        <div className="p-4 md:p-8">
-          {renderActiveSection()}
-        </div>
-      </main>
+        {/* 메인 콘텐츠 영역 */}
+        <main className="flex-1 ml-0 md:ml-80 pt-16 md:pt-0">
+          <div className="p-6 md:p-12">
+            {renderActiveSection()}
+          </div>
+        </main>
     </div>
   );
 }

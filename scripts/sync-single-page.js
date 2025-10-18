@@ -103,11 +103,20 @@ async function syncSinglePage() {
       `${pageData.slug}.json`
     );
     
+    const publicFilePath = path.join(
+      process.cwd(),
+      'public',
+      'data',
+      'pages',
+      `${pageData.slug}.json`
+    );
+    
     // Published가 false면 파일 삭제
     if (!pageData.published) {
       console.log('🗑️  Page is unpublished, removing file');
       try {
         await fs.unlink(filePath);
+        await fs.unlink(publicFilePath);
         console.log('✅ File removed');
       } catch (error) {
         if (error.code !== 'ENOENT') throw error;
@@ -116,10 +125,18 @@ async function syncSinglePage() {
       return;
     }
     
-    // JSON 파일로 저장
+    // JSON 파일로 저장 (data와 public 폴더 모두)
     await fs.mkdir(path.dirname(filePath), { recursive: true });
+    await fs.mkdir(path.dirname(publicFilePath), { recursive: true });
+    
     await fs.writeFile(
       filePath,
+      JSON.stringify(pageData, null, 2),
+      'utf-8'
+    );
+    
+    await fs.writeFile(
+      publicFilePath,
       JSON.stringify(pageData, null, 2),
       'utf-8'
     );

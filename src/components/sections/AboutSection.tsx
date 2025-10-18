@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import MarkdownRenderer from '@/components/MarkdownRenderer';
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import type { PageData } from '@/types';
 
 export function AboutSection() {
@@ -11,10 +11,14 @@ export function AboutSection() {
   useEffect(() => {
     async function loadAboutData() {
       try {
-        // 실제로는 API 또는 데이터 파일에서 로드
-        setLoading(false);
+        const response = await fetch('/data/pages/about.json');
+        if (response.ok) {
+          const data = await response.json();
+          setAboutData(data);
+        }
       } catch (error) {
-        console.error('Failed to load about data:', error);
+        console.error('About 데이터 로드 실패:', error);
+      } finally {
         setLoading(false);
       }
     }

@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Mail, Github, Linkedin, Twitter, MapPin, Phone } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
 export function ContactSection() {
   return (

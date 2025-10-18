@@ -121,17 +121,29 @@ async function syncAllPages() {
     
     // 3. 각 페이지를 JSON 파일로 저장
     const dataDir = path.join(process.cwd(), 'data', 'pages');
+    const publicDataDir = path.join(process.cwd(), 'public', 'data', 'pages');
     await fs.mkdir(dataDir, { recursive: true });
+    await fs.mkdir(publicDataDir, { recursive: true });
     
     const savedSlugs = new Set();
     
     for (const page of pages) {
       const filePath = path.join(dataDir, `${page.slug}.json`);
+      const publicFilePath = path.join(publicDataDir, `${page.slug}.json`);
+      
       await fs.writeFile(
         filePath,
         JSON.stringify(page, null, 2),
         'utf-8'
       );
+      
+      // public 폴더에도 복사
+      await fs.writeFile(
+        publicFilePath,
+        JSON.stringify(page, null, 2),
+        'utf-8'
+      );
+      
       savedSlugs.add(page.slug);
       console.log(`  ✅ ${page.title} (${page.pageType})`);
     }
@@ -210,6 +222,13 @@ async function syncAllPages() {
     
     await fs.writeFile(
       path.join(process.cwd(), 'data', 'index.json'),
+      JSON.stringify(index, null, 2),
+      'utf-8'
+    );
+    
+    // public 폴더에도 복사
+    await fs.writeFile(
+      path.join(process.cwd(), 'public', 'data', 'index.json'),
       JSON.stringify(index, null, 2),
       'utf-8'
     );

@@ -16,10 +16,13 @@ export function ProjectsSection() {
   useEffect(() => {
     async function loadProjects() {
       try {
-        // 실제로는 API 또는 데이터 파일에서 로드
-        setLoading(false);
+        const response = await fetch('/data/index.json');
+        const data = await response.json();
+        const projectList = data.pagesByType?.projects || [];
+        setProjects(projectList);
       } catch (error) {
-        console.error('Failed to load projects:', error);
+        console.error('프로젝트 데이터 로드 실패:', error);
+      } finally {
         setLoading(false);
       }
     }
