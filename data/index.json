@@ -1,5 +1,5 @@
 {
-  "lastSyncTime": "2025-10-18T16:17:21.480Z",
+  "lastSyncTime": "2025-10-18T16:37:16.920Z",
   "totalPages": 3,
   "pagesByType": {
     "home": {
@@ -28,7 +28,7 @@
       "slug": "footer",
       "title": "Footer",
       "category": null,
-      "publishDate": "2025-10-18T16:17:20.212Z",
+      "publishDate": "2025-10-18T16:37:14.715Z",
       "published": true
     },
     "about": null
@@ -58,7 +58,7 @@
       "slug": "footer",
       "title": "Footer",
       "category": null,
-      "publishDate": "2025-10-18T16:17:20.212Z",
+      "publishDate": "2025-10-18T16:37:14.715Z",
       "published": true
     }
   ]
