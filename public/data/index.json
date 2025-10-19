@@ -1,16 +1,8 @@
 {
-  "lastSyncTime": "2025-10-18T15:20:47.488Z",
-  "totalPages": 3,
+  "lastSyncTime": "2025-10-19T07:21:04.810Z",
+  "totalPages": 15,
   "pagesByType": {
-    "home": {
-      "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
-      "pageType": "Home",
-      "slug": "home",
-      "title": "Home",
-      "category": null,
-      "publishDate": "2025-10-18",
-      "published": true
-    },
+    "home": null,
     "projects": [
       {
         "id": "29092523-5e34-8059-870c-c526a49bad45",
@@ -20,6 +12,105 @@
         "category": "YouTube",
         "publishDate": "2025-10-18",
         "published": true
+      },
+      {
+        "id": "45134f91-f703-4361-8dec-ad2dd0bf0ba5",
+        "pageType": "Project",
+        "slug": "cursor-seoul-meetup-2",
+        "title": "커서 서울 밋업 2회 운영",
+        "category": "Branding",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "6ad31056-3f5b-4c86-a69f-6f3f842b989e",
+        "pageType": "Project",
+        "slug": "notion-3rd-edition-2025",
+        "title": "Notion 개정3판: 업무와 일상을 정리하는 새로운 방법",
+        "category": "Publishing",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "75720882-7c9a-40da-8d99-28b7a36ff14d",
+        "pageType": "Project",
+        "slug": "yonsei-labor-notion-consulting",
+        "title": "노무사사무소 연세 X 시리얼 노션 컨설팅",
+        "category": "Consulting",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "7c544c37-2da9-4481-b4d5-c4c07c25be32",
+        "pageType": "Project",
+        "slug": "learn-notion-with-20-templates",
+        "title": "20가지 템플릿으로 배우는 노션",
+        "category": "Education",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "8ce08662-2383-46ee-a5a6-72bb5326ac7a",
+        "pageType": "Project",
+        "slug": "sireal-youtube-channel",
+        "title": "SIREAL YouTube 채널 운영",
+        "category": "YouTube",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "9ad9c98d-efa4-4c92-a189-ed5334847447",
+        "pageType": "Project",
+        "slug": "sireal-template-store",
+        "title": "SIREAL 템플릿 스토어 운영",
+        "category": "Branding",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "9e0a3fed-a998-41e6-a260-70fcc7b24d2d",
+        "pageType": "Project",
+        "slug": "sireal-rebranding",
+        "title": "브랜딩 리뉴얼: SIREAL",
+        "category": "Branding",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "a08cf2b3-bb5d-4421-8619-f899c4122d7e",
+        "pageType": "Project",
+        "slug": "collab-tools-consulting-book",
+        "title": "실무에 바로 쓰는 협업 도구 컨설팅",
+        "category": "Publishing",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "adb829cb-68fd-469e-850a-84affd01ef53",
+        "pageType": "Project",
+        "slug": "sireal-portfolio-site",
+        "title": "sireal.co 포트폴리오 사이트 구축",
+        "category": "Branding",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "f86d1400-cbef-40f1-82aa-396c66f1b00c",
+        "pageType": "Project",
+        "slug": "institutional-workshops",
+        "title": "대학·기관 맞춤 강의/워크숍",
+        "category": "Education",
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "f9cdb3ef-c0d6-4436-bf19-36f162fbe971",
+        "pageType": "Project",
+        "slug": "notion-online-class-series",
+        "title": "온라인 강의 시리즈",
+        "category": "Education",
+        "publishDate": "2025-10-19",
+        "published": true
       }
     ],
     "footer": {
@@ -28,17 +119,25 @@
       "slug": "footer",
       "title": "Footer",
       "category": null,
-      "publishDate": "2025-10-18T15:20:46.729Z",
+      "publishDate": "2025-10-19T07:20:59.654Z",
       "published": true
     },
-    "about": null
+    "about": {
+      "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
+      "pageType": "About",
+      "slug": "about",
+      "title": "About",
+      "category": null,
+      "publishDate": "2025-10-18",
+      "published": true
+    }
   },
   "pages": [
     {
       "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
-      "pageType": "Home",
-      "slug": "home",
-      "title": "Home",
+      "pageType": "About",
+      "slug": "about",
+      "title": "About",
       "category": null,
       "publishDate": "2025-10-18",
       "published": true
@@ -58,7 +157,115 @@
       "slug": "footer",
       "title": "Footer",
       "category": null,
-      "publishDate": "2025-10-18T15:20:46.729Z",
+      "publishDate": "2025-10-19T07:20:59.654Z",
+      "published": true
+    },
+    {
+      "id": "29192523-5e34-8012-a132-fa111f5cf598",
+      "pageType": "Profile",
+      "slug": "profile",
+      "title": "profile",
+      "category": null,
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "45134f91-f703-4361-8dec-ad2dd0bf0ba5",
+      "pageType": "Project",
+      "slug": "cursor-seoul-meetup-2",
+      "title": "커서 서울 밋업 2회 운영",
+      "category": "Branding",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "6ad31056-3f5b-4c86-a69f-6f3f842b989e",
+      "pageType": "Project",
+      "slug": "notion-3rd-edition-2025",
+      "title": "Notion 개정3판: 업무와 일상을 정리하는 새로운 방법",
+      "category": "Publishing",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "75720882-7c9a-40da-8d99-28b7a36ff14d",
+      "pageType": "Project",
+      "slug": "yonsei-labor-notion-consulting",
+      "title": "노무사사무소 연세 X 시리얼 노션 컨설팅",
+      "category": "Consulting",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "7c544c37-2da9-4481-b4d5-c4c07c25be32",
+      "pageType": "Project",
+      "slug": "learn-notion-with-20-templates",
+      "title": "20가지 템플릿으로 배우는 노션",
+      "category": "Education",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "8ce08662-2383-46ee-a5a6-72bb5326ac7a",
+      "pageType": "Project",
+      "slug": "sireal-youtube-channel",
+      "title": "SIREAL YouTube 채널 운영",
+      "category": "YouTube",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "9ad9c98d-efa4-4c92-a189-ed5334847447",
+      "pageType": "Project",
+      "slug": "sireal-template-store",
+      "title": "SIREAL 템플릿 스토어 운영",
+      "category": "Branding",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "9e0a3fed-a998-41e6-a260-70fcc7b24d2d",
+      "pageType": "Project",
+      "slug": "sireal-rebranding",
+      "title": "브랜딩 리뉴얼: SIREAL",
+      "category": "Branding",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "a08cf2b3-bb5d-4421-8619-f899c4122d7e",
+      "pageType": "Project",
+      "slug": "collab-tools-consulting-book",
+      "title": "실무에 바로 쓰는 협업 도구 컨설팅",
+      "category": "Publishing",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "adb829cb-68fd-469e-850a-84affd01ef53",
+      "pageType": "Project",
+      "slug": "sireal-portfolio-site",
+      "title": "sireal.co 포트폴리오 사이트 구축",
+      "category": "Branding",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "f86d1400-cbef-40f1-82aa-396c66f1b00c",
+      "pageType": "Project",
+      "slug": "institutional-workshops",
+      "title": "대학·기관 맞춤 강의/워크숍",
+      "category": "Education",
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "f9cdb3ef-c0d6-4436-bf19-36f162fbe971",
+      "pageType": "Project",
+      "slug": "notion-online-class-series",
+      "title": "온라인 강의 시리즈",
+      "category": "Education",
+      "publishDate": "2025-10-19",
       "published": true
     }
   ]

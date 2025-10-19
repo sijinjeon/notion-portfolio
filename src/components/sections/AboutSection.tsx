@@ -42,19 +42,21 @@ export function AboutSection() {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-12">
       <div>
-        <h1 className="text-4xl font-bold text-slate-900 mb-6">
-          소개
+        <h1 className="text-4xl font-bold text-slate-900 mb-2">
+          About me
         </h1>
+        <p className="text-slate-500 mb-10">소개합니다</p>
+        
         {aboutData ? (
           <div className="prose prose-lg prose-slate max-w-none">
             <MarkdownRenderer content={aboutData.content} />
           </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-slate-500 mb-2">소개 페이지를 준비 중입니다.</p>
-            <p className="text-sm text-slate-400">Notion 데이터베이스에 About 페이지를 추가해주세요.</p>
+          <div className="text-center py-16">
+            <p className="text-slate-400 mb-2">소개 페이지를 준비 중입니다.</p>
+            <p className="text-sm text-slate-300">Notion 데이터베이스에 About 페이지를 추가해주세요.</p>
           </div>
         )}
       </div>

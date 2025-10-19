@@ -3,7 +3,7 @@
 /**
  * 페이지 타입 정의
  */
-export type PageType = "Home" | "Project" | "Footer" | "About";
+export type PageType = "Home" | "Project" | "Footer" | "About" | "Contact" | "Profile";
 
 /**
  * 페이지 데이터 인터페이스
@@ -60,6 +60,8 @@ export interface DatabaseIndex {
     projects: PageSummary[];
     footer: PageSummary | null;
     about: PageSummary | null;
+    contact: PageSummary | null;
+    profile: PageSummary | null;
   };
   pages: PageSummary[];
 }
