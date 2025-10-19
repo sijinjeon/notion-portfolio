@@ -74,21 +74,39 @@ export function HomeSection() {
     }
 
     // 각 필드 파싱
-    for (let i = statCardIndex; i < lines.length && i < statCardIndex + 20; i++) {
-      const line = lines[i];
+    for (let i = statCardIndex; i < lines.length && i < statCardIndex + 30; i++) {
+      const line = lines[i].trim();
       
       if (line.includes('Years of Experience')) {
-        const nextLine = lines[i + 1];
-        const match = nextLine?.match(/\*\*(.+?)\*\*/);
-        if (match) yearsOfExperience = match[1];
-      } else if (line.includes('Specialization')) {
-        const nextLine = lines[i + 1];
-        const match = nextLine?.match(/\*\*(.+?)\*\*/);
-        if (match) specialization = match[1];
+        // 다음 몇 줄 확인 (볼드 처리된 값 찾기)
+        for (let j = i + 1; j < i + 5; j++) {
+          const nextLine = lines[j]?.trim();
+          const match = nextLine?.match(/\*\*(.+?)\*\*/);
+          if (match) {
+            yearsOfExperience = match[1];
+            break;
+          }
+        }
+      } else if (line.includes('🎯 Specialization')) {
+        // 다음 비어있지 않은 줄 찾기
+        for (let j = i + 1; j < i + 5; j++) {
+          const nextLine = lines[j]?.trim();
+          if (nextLine && !nextLine.startsWith('#') && !nextLine.startsWith('---') && nextLine.length > 0) {
+            // 볼드 처리 제거
+            specialization = nextLine.replace(/\*\*/g, '');
+            break;
+          }
+        }
       } else if (line.includes('Current Status')) {
-        const nextLine = lines[i + 1];
-        const match = nextLine?.match(/\*\*(.+?)\*\*/);
-        if (match) currentStatus = match[1];
+        // 다음 몇 줄 확인 (볼드 처리된 값 찾기)
+        for (let j = i + 1; j < i + 5; j++) {
+          const nextLine = lines[j]?.trim();
+          const match = nextLine?.match(/\*\*(.+?)\*\*/);
+          if (match) {
+            currentStatus = match[1];
+            break;
+          }
+        }
       }
     }
 
