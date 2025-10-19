@@ -2,5 +2,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.vercel.app/sitemap.xml
+Sitemap: https://notion-portfolio-pi.vercel.app/sitemap.xml
 

@@ -7,7 +7,7 @@ export const dynamic = 'force-static';
 export const revalidate = false;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://your-domain.vercel.app';
+  const baseUrl = 'https://notion-portfolio-pi.vercel.app';
   const index = await loadIndex();
   
   const staticPages = [
