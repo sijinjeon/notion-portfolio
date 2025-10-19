@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { User, Calendar, MapPin, Mail, Github, Linkedin, Twitter, Award, Briefcase } from 'lucide-react';
+import { User, MapPin, Mail, Github, Linkedin, Twitter, Award, Briefcase } from 'lucide-react';
 import type { PageData } from '@/types';
 
 export function AboutSection() {

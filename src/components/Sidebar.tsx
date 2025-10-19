@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Home, Briefcase, User, Github, Linkedin, Twitter, Menu, Mail, MapPin } from 'lucide-react';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import type { PageData } from '@/types';
 
 interface SidebarProps {

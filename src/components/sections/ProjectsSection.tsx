@@ -48,7 +48,7 @@ export function ProjectsSection() {
   }, []);
 
   // 카테고리 목록 생성
-  const categories = ['전체', ...Array.from(new Set(projects.map(p => p.category).filter(Boolean)))];
+  const categories: string[] = ['전체', ...Array.from(new Set(projects.map(p => p.category).filter((c): c is string => Boolean(c))))];
   
   // 필터링된 프로젝트
   const filteredProjects = activeCategory === '전체' 

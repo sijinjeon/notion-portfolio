@@ -23,6 +23,8 @@ export async function loadIndex(): Promise<DatabaseIndex> {
         projects: [],
         footer: null,
         about: null,
+        contact: null,
+        profile: null,
       },
       pages: [],
     };
