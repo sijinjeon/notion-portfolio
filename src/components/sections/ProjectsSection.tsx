@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Calendar, ArrowRight, FileText, TrendingUp } from 'lucide-react';
+import { Calendar, ArrowRight, FileText, TrendingUp, Filter } from 'lucide-react';
 import type { PageData } from '@/types';
 
 export function ProjectsSection() {
