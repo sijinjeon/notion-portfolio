@@ -146,46 +146,46 @@ export function HomeSection() {
     <section className="space-y-8">
       {/* 통계 카드 섹션 - 개인 브랜딩 중심 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
               Years of Experience
             </CardTitle>
             <Briefcase className="h-3 w-3 text-slate-600" />
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-1 justify-between">
             <div className="text-xl font-bold text-slate-900">{statCards.yearsOfExperience}</div>
-            <p className="text-xs text-slate-500">
-              Years in business process optimization
+            <p className="text-xs text-slate-500 mt-auto">
+              in business optimization
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
               Specialization
             </CardTitle>
             <Lightbulb className="h-3 w-3 text-slate-600" />
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-1 justify-between">
             <div className="text-xl font-bold text-slate-900">{statCards.specialization}</div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-auto">
               Core expertise areas
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
               Current Status
             </CardTitle>
             <UserCheck className="h-3 w-3 text-slate-600" />
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-1 justify-between">
             <div className="text-xl font-bold text-slate-900">{statCards.currentStatus}</div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-auto">
               Ready for new challenges
             </p>
           </CardContent>

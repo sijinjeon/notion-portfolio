@@ -121,46 +121,46 @@ export function ProjectsSection() {
     <section className="space-y-8">
       {/* 통계 카드 섹션 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
               Total Projects
             </CardTitle>
             <FileText className="h-3 w-3 text-slate-600" />
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-1 justify-between">
             <div className="text-xl font-bold text-slate-900">{totalProjects}</div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-auto">
               All completed projects
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
               Categories
             </CardTitle>
             <Filter className="h-3 w-3 text-slate-600" />
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-1 justify-between">
             <div className="text-xl font-bold text-slate-900">{totalCategories}</div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-auto">
               Different project types
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
               Recent Projects
             </CardTitle>
             <TrendingUp className="h-3 w-3 text-slate-600" />
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col flex-1 justify-between">
             <div className="text-xl font-bold text-slate-900">{thisYearCount}</div>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-auto">
               Projects completed this year
             </p>
           </CardContent>
