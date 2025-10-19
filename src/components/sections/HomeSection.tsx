@@ -7,26 +7,23 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Calendar, ArrowRight, TrendingUp, Users, FileText } from 'lucide-react';
+import { Calendar, ArrowRight, Briefcase, Lightbulb, UserCheck } from 'lucide-react';
 import type { PageData } from '@/types';
 
 export function HomeSection() {
   const [recentProjects, setRecentProjects] = useState<PageData[]>([]);
-  const [allProjects, setAllProjects] = useState<any[]>([]);
+  const [profileData, setProfileData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadProjects() {
+    async function loadData() {
       try {
         // 인덱스에서 프로젝트 목록 가져오기
         const indexResponse = await fetch('/data/index.json');
         const indexData = await indexResponse.json();
         const projectSummaries = indexData.pagesByType?.projects || [];
         
-        // 전체 프로젝트 목록 저장 (통계용)
-        setAllProjects(projectSummaries);
-        
-        // 최근 6개 프로젝트의 상세 데이터 가져오기 (metaDescription 포함)
+        // 최근 6개 프로젝트의 상세 데이터 가져오기
         const projectPromises = projectSummaries.slice(0, 6).map(async (summary: any) => {
           const response = await fetch(`/data/pages/${summary.slug}.json`);
           return response.json();
@@ -34,25 +31,71 @@ export function HomeSection() {
         
         const projects = await Promise.all(projectPromises);
         setRecentProjects(projects);
+
+        // Profile 데이터 로드 (통계 카드 정보용)
+        try {
+          const profileResponse = await fetch('/data/pages/profile.json');
+          const profile = await profileResponse.json();
+          setProfileData(profile);
+        } catch (error) {
+          console.error('Profile 데이터 로드 실패:', error);
+        }
       } catch (error) {
-        console.error('프로젝트 데이터 로드 실패:', error);
+        console.error('데이터 로드 실패:', error);
       } finally {
         setLoading(false);
       }
     }
     
-    loadProjects();
+    loadData();
   }, []);
 
-  // 통계 데이터 계산
-  const totalProjects = allProjects.length;
-  const categories = Array.from(new Set(allProjects.map(p => p.category).filter(Boolean)));
-  const recentCount = allProjects.filter(p => {
-    const projectDate = new Date(p.publishDate);
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    return projectDate >= thirtyDaysAgo;
-  }).length;
+  // Profile에서 통계 카드 정보 파싱
+  const parseStatCards = () => {
+    if (!profileData?.content) {
+      return {
+        yearsOfExperience: '5+ years',
+        specialization: 'No-Code, Automation',
+        currentStatus: 'Available for projects',
+      };
+    }
+
+    const content = profileData.content;
+    const lines = content.split('\n');
+    
+    let yearsOfExperience = '5+ years';
+    let specialization = 'No-Code, Automation';
+    let currentStatus = 'Available for projects';
+
+    // "## 🏠 홈 화면 통계 카드 정보" 섹션 찾기
+    const statCardIndex = lines.findIndex(line => line.includes('홈 화면 통계 카드 정보'));
+    if (statCardIndex === -1) {
+      return { yearsOfExperience, specialization, currentStatus };
+    }
+
+    // 각 필드 파싱
+    for (let i = statCardIndex; i < lines.length && i < statCardIndex + 20; i++) {
+      const line = lines[i];
+      
+      if (line.includes('Years of Experience')) {
+        const nextLine = lines[i + 1];
+        const match = nextLine?.match(/\*\*(.+?)\*\*/);
+        if (match) yearsOfExperience = match[1];
+      } else if (line.includes('Specialization')) {
+        const nextLine = lines[i + 1];
+        const match = nextLine?.match(/\*\*(.+?)\*\*/);
+        if (match) specialization = match[1];
+      } else if (line.includes('Current Status')) {
+        const nextLine = lines[i + 1];
+        const match = nextLine?.match(/\*\*(.+?)\*\*/);
+        if (match) currentStatus = match[1];
+      }
+    }
+
+    return { yearsOfExperience, specialization, currentStatus };
+  };
+
+  const statCards = parseStatCards();
 
   if (loading) {
     return (
@@ -101,19 +144,19 @@ export function HomeSection() {
 
   return (
     <section className="space-y-8">
-      {/* 통계 카드 섹션 */}
+      {/* 통계 카드 섹션 - 개인 브랜딩 중심 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
-              Total Projects
+              Years of Experience
             </CardTitle>
-            <FileText className="h-3 w-3 text-slate-600" />
+            <Briefcase className="h-3 w-3 text-slate-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl font-bold text-slate-900">{totalProjects}</div>
+            <div className="text-xl font-bold text-slate-900">{statCards.yearsOfExperience}</div>
             <p className="text-xs text-slate-500">
-              All completed projects
+              Years in business process optimization
             </p>
           </CardContent>
         </Card>
@@ -121,14 +164,14 @@ export function HomeSection() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
-              Recent Projects
+              Specialization
             </CardTitle>
-            <TrendingUp className="h-3 w-3 text-slate-600" />
+            <Lightbulb className="h-3 w-3 text-slate-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl font-bold text-slate-900">{recentCount}</div>
+            <div className="text-xl font-bold text-slate-900">{statCards.specialization}</div>
             <p className="text-xs text-slate-500">
-              +{recentCount} from last 30 days
+              Core expertise areas
             </p>
           </CardContent>
         </Card>
@@ -136,14 +179,14 @@ export function HomeSection() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
-              Categories
+              Current Status
             </CardTitle>
-            <Users className="h-3 w-3 text-slate-600" />
+            <UserCheck className="h-3 w-3 text-slate-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl font-bold text-slate-900">{categories.length}</div>
+            <div className="text-xl font-bold text-slate-900">{statCards.currentStatus}</div>
             <p className="text-xs text-slate-500">
-              Different project types
+              Ready for new challenges
             </p>
           </CardContent>
         </Card>

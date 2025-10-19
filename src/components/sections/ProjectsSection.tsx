@@ -58,11 +58,11 @@ export function ProjectsSection() {
   // 통계 데이터 계산
   const totalProjects = projects.length;
   const totalCategories = categories.length - 1; // '전체' 제외
-  const recentCount = projects.filter(p => {
+  // 올해 프로젝트 수 계산
+  const currentYear = new Date().getFullYear();
+  const thisYearCount = projects.filter(p => {
     const projectDate = new Date(p.publishDate);
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    return projectDate >= thirtyDaysAgo;
+    return projectDate.getFullYear() === currentYear;
   }).length;
 
   if (loading) {
@@ -159,9 +159,9 @@ export function ProjectsSection() {
             <TrendingUp className="h-3 w-3 text-slate-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl font-bold text-slate-900">{recentCount}</div>
+            <div className="text-xl font-bold text-slate-900">{thisYearCount}</div>
             <p className="text-xs text-slate-500">
-              +{recentCount} from last 30 days
+              Projects completed this year
             </p>
           </CardContent>
         </Card>
