@@ -1,16 +1,8 @@
 {
-  "lastSyncTime": "2025-10-19T01:39:36.145Z",
-  "totalPages": 3,
+  "lastSyncTime": "2025-10-19T03:06:53.729Z",
+  "totalPages": 5,
   "pagesByType": {
-    "home": {
-      "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
-      "pageType": "Home",
-      "slug": "home",
-      "title": "Home",
-      "category": null,
-      "publishDate": "2025-10-18",
-      "published": true
-    },
+    "home": null,
     "projects": [
       {
         "id": "29092523-5e34-8059-870c-c526a49bad45",
@@ -20,6 +12,24 @@
         "category": "YouTube",
         "publishDate": "2025-10-18",
         "published": true
+      },
+      {
+        "id": "45134f91-f703-4361-8dec-ad2dd0bf0ba5",
+        "pageType": "Project",
+        "slug": "cursor-seoul-meetup-2",
+        "title": "커서 서울 밋업 2회 운영",
+        "category": null,
+        "publishDate": "2025-10-19",
+        "published": true
+      },
+      {
+        "id": "6ad31056-3f5b-4c86-a69f-6f3f842b989e",
+        "pageType": "Project",
+        "slug": "notion-3rd-edition-2025",
+        "title": "Notion 개정3판: 업무와 일상을 정리하는 새로운 방법",
+        "category": null,
+        "publishDate": "2025-10-19",
+        "published": true
       }
     ],
     "footer": {
@@ -28,17 +38,25 @@
       "slug": "footer",
       "title": "Footer",
       "category": null,
-      "publishDate": "2025-10-19T01:39:32.615Z",
+      "publishDate": "2025-10-19T03:06:52.635Z",
       "published": true
     },
-    "about": null
+    "about": {
+      "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
+      "pageType": "About",
+      "slug": "about",
+      "title": "About",
+      "category": null,
+      "publishDate": "2025-10-18",
+      "published": true
+    }
   },
   "pages": [
     {
       "id": "29092523-5e34-802f-9ee7-d93a86111f6b",
-      "pageType": "Home",
-      "slug": "home",
-      "title": "Home",
+      "pageType": "About",
+      "slug": "about",
+      "title": "About",
       "category": null,
       "publishDate": "2025-10-18",
       "published": true
@@ -58,7 +76,25 @@
       "slug": "footer",
       "title": "Footer",
       "category": null,
-      "publishDate": "2025-10-19T01:39:32.615Z",
+      "publishDate": "2025-10-19T03:06:52.635Z",
+      "published": true
+    },
+    {
+      "id": "45134f91-f703-4361-8dec-ad2dd0bf0ba5",
+      "pageType": "Project",
+      "slug": "cursor-seoul-meetup-2",
+      "title": "커서 서울 밋업 2회 운영",
+      "category": null,
+      "publishDate": "2025-10-19",
+      "published": true
+    },
+    {
+      "id": "6ad31056-3f5b-4c86-a69f-6f3f842b989e",
+      "pageType": "Project",
+      "slug": "notion-3rd-edition-2025",
+      "title": "Notion 개정3판: 업무와 일상을 정리하는 새로운 방법",
+      "category": null,
+      "publishDate": "2025-10-19",
       "published": true
     }
   ]
