@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Home, Briefcase, User, Github, Linkedin, Twitter, Menu } from 'lucide-react';
+import { Home, Briefcase, User, Github, Linkedin, Twitter, Menu, Mail, MapPin } from 'lucide-react';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import type { PageData } from '@/types';
 
@@ -101,63 +101,148 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
   return (
     <div className="flex flex-col h-full">
       {/* 프로필 섹션 */}
-      <div className="p-8 border-b border-slate-200">
+      <div className="p-6 border-b border-slate-200">
         {loading ? (
           <div className="animate-pulse">
-            <div className="w-24 h-24 bg-slate-200 rounded-full mx-auto mb-4"></div>
-            <div className="h-6 bg-slate-200 rounded w-20 mx-auto mb-2"></div>
-            <div className="h-4 bg-slate-200 rounded w-32 mx-auto mb-4"></div>
+            <div className="w-20 h-20 bg-slate-200 rounded-full mx-auto mb-4"></div>
+            <div className="h-5 bg-slate-200 rounded w-24 mx-auto mb-2"></div>
+            <div className="h-3 bg-slate-200 rounded w-32 mx-auto mb-4"></div>
+            <div className="flex justify-center gap-2">
+              <div className="h-6 w-16 bg-slate-200 rounded"></div>
+              <div className="h-6 w-16 bg-slate-200 rounded"></div>
+              <div className="h-6 w-16 bg-slate-200 rounded"></div>
+            </div>
           </div>
         ) : profileData ? (
           <>
-            <div className="relative w-20 h-20 mx-auto mb-5">
+            <div className="relative w-20 h-20 mx-auto mb-4">
               <Image
                 src="/profile.jpg"
                 alt={profileData.title}
                 fill
-                className="rounded-full object-cover ring-2 ring-slate-200 ring-offset-4"
+                className="rounded-full object-cover ring-2 ring-slate-200 ring-offset-2"
                 priority
                 sizes="80px"
               />
             </div>
             
-            <div className="text-center">
-              <h1 className="text-lg font-bold text-slate-900 mb-3">
+            <div className="text-center mb-4">
+              <h1 className="text-xl font-bold text-slate-900 mb-3">
                 {profileData.title}
               </h1>
-              <div className="text-xs text-slate-500 leading-relaxed prose-sm prose-slate max-w-none">
-                <MarkdownRenderer content={profileData.content} />
+              
+              {/* 노션에서 가져온 연락처 정보 */}
+              <div className="text-sm text-slate-600 leading-relaxed mb-4 space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <Mail className="h-3 w-3 text-slate-400" />
+                  <span className="text-xs">milk@sireal.co</span>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <MapPin className="h-3 w-3 text-slate-400" />
+                  <span className="text-xs">Seoul, South Korea</span>
+                </div>
+              </div>
+              
+              {/* 소셜 링크 */}
+              <div className="flex justify-center gap-2">
+                <a
+                  href="https://github.com/sijinjeon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                >
+                  <Github className="h-3 w-3" />
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sijinjeon/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                >
+                  <Linkedin className="h-3 w-3" />
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.threads.com/@sireal_co"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                >
+                  <Twitter className="h-3 w-3" />
+                  Threads
+                </a>
               </div>
             </div>
           </>
         ) : (
           <div className="text-center">
-            <div className="relative w-24 h-24 mx-auto mb-4">
+            <div className="relative w-20 h-20 mx-auto mb-4">
               <Image
                 src="/profile.jpg"
                 alt="전시진"
                 fill
-                className="rounded-full object-cover border-2 border-slate-200"
+                className="rounded-full object-cover ring-2 ring-slate-200 ring-offset-2"
                 priority
-                sizes="96px"
+                sizes="80px"
               />
             </div>
             
-            <div className="text-center">
-              <h1 className="text-xl font-semibold text-slate-900 mb-2">
+            <div className="text-center mb-4">
+              <h1 className="text-xl font-bold text-slate-900 mb-3">
                 전시진
               </h1>
-              <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                Business Process Optimization
-              </p>
+              
+              {/* 연락처 정보 */}
+              <div className="text-sm text-slate-600 leading-relaxed mb-4 space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <Mail className="h-3 w-3 text-slate-400" />
+                  <span className="text-xs">milk@sireal.co</span>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <MapPin className="h-3 w-3 text-slate-400" />
+                  <span className="text-xs">Seoul, South Korea</span>
+                </div>
+              </div>
+              
+              {/* 소셜 링크 */}
+              <div className="flex justify-center gap-2">
+                <a
+                  href="https://github.com/sijinjeon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                >
+                  <Github className="h-3 w-3" />
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sijinjeon/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                >
+                  <Linkedin className="h-3 w-3" />
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.threads.com/@sireal_co"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                >
+                  <Twitter className="h-3 w-3" />
+                  Threads
+                </a>
+              </div>
             </div>
           </div>
         )}
       </div>
       
       {/* 네비게이션 메뉴 */}
-      <nav className="flex-1 p-8 pt-10">
-        <ul className="space-y-2">
+      <nav className="flex-1 p-4">
+        <ul className="space-y-1">
           {menuItems.map((item) => {
             const isActive = activeSection === item.id;
             const Icon = item.icon;
@@ -165,16 +250,19 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
             return (
               <li key={item.id}>
                 <button 
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 group ${
+                  className={`w-full text-left px-3 py-2.5 rounded-md transition-all flex items-center gap-3 group relative ${
                     isActive 
-                      ? 'bg-white text-slate-900 font-semibold shadow-sm' 
-                      : 'text-slate-600 hover:bg-white/50 hover:text-slate-900'
+                      ? 'bg-slate-900 text-white font-medium shadow-sm' 
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                   }`}
                   onClick={() => onSectionChange(item.id)}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <Icon className={`h-5 w-5 ${isActive ? 'text-slate-900' : 'text-slate-400 group-hover:text-slate-600'}`} />
+                  <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-600'}`} />
                   <span className="text-sm">{item.label}</span>
+                  {isActive && (
+                    <div className="absolute right-2 w-1 h-1 bg-white rounded-full"></div>
+                  )}
                 </button>
               </li>
             );
@@ -183,7 +271,7 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
       </nav>
       
       {/* 하단 정보 */}
-      <div className="p-6 border-t border-slate-200">
+      <div className="p-4 border-t border-slate-200">
         <div className="text-center text-xs text-slate-400">
           <p>© 2025 전시진</p>
           <p className="mt-1">Built with Cursor & Notion</p>

@@ -62,16 +62,16 @@ Notion에서 글을 쓰면 자동으로 나만의 포트폴리오 웹사이트�
 
 **Phase 1-8 (코드 구현)**: ✅ 완료됨!
 
-**다음 단계**: 👉 **[QUICK_START.md](./QUICK_START.md)** ⭐ 가장 빠른 가이드
+**다음 단계**: 👉 **[QUICK_START.md](./docs/QUICK_START.md)** ⭐ 가장 빠른 가이드
 
 ### 📖 자세한 가이드 선택
 
 | 문서 | 추천 대상 | 소요 시간 |
 |------|-----------|----------|
-| **[QUICK_START.md](./QUICK_START.md)** ⭐ | 빠르게 시작하고 싶은 분 | 17분 |
-| **[SETUP_GUIDE.md](./SETUP_GUIDE.md)** | 단계별 설명이 필요한 분 | 30분 |
-| **[PHASE_9_NOTION_SETUP.md](./PHASE_9_NOTION_SETUP.md)** | Notion 설정에 집중 | 40분 |
-| **[NOTION_BUTTON_URL.md](./NOTION_BUTTON_URL.md)** | 버튼 설정만 보고 싶은 분 | 5분 |
+| **[QUICK_START.md](./docs/QUICK_START.md)** ⭐ | 빠르게 시작하고 싶은 분 | 17분 |
+| **[SETUP_GUIDE.md](./docs/SETUP_GUIDE.md)** | 단계별 설명이 필요한 분 | 30분 |
+| **[PHASE_9_NOTION_SETUP.md](./docs/PHASE_9_NOTION_SETUP.md)** | Notion 설정에 집중 | 40분 |
+| **[NOTION_BUTTON_URL.md](./docs/NOTION_BUTTON_URL.md)** | 버튼 설정만 보고 싶은 분 | 5분 |
 
 ### 간단 요약
 
