@@ -78,7 +78,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
       )}
 
       {/* 데스크톱 사이드바 */}
-      <aside className="w-80 bg-slate-50 border-r border-slate-200 hidden md:block">
+      <aside className="w-full h-full hidden md:flex md:flex-col">
         <SidebarContent 
           activeSection={activeSection} 
           onSectionChange={onSectionChange}
