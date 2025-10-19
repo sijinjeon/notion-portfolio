@@ -1,0 +1,18 @@
+{
+  "id": "adb829cb-68fd-469e-850a-84affd01ef53",
+  "pageType": "Project",
+  "slug": "sireal-portfolio-site",
+  "title": "sireal.co 포트폴리오 사이트 구축",
+  "metaDescription": "sireal.co",
+  "category": "Branding",
+  "tags": [
+    "브랜딩",
+    "Sireal",
+    "웹개발"
+  ],
+  "thumbnail": "https://prod-files-secure.s3.us-west-2.amazonaws.com/f462e2f8-2a8e-4bfb-a91b-33c438bd03a3/43ab712a-06be-4b7c-a7fd-d69785de2d6b/1._youtube_1280x720.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Y45IVOVF%2F20251019%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251019T035140Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECIaCXVzLXdlc3QtMiJHMEUCIDVCXHoyzd2GzzwXkLDXaZAF5Maeamr3tBs4byjDPln7AiEAyTX2GBmu9UZ6uENfjlfBxd3hdjh5h%2BzX3YLCDXyFGJgqiAQIy%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDL7h68jHiiGf1UMzaCrcA170%2Bi2JD7Db9qB%2Bf4wXMcgw%2B5m64u69jLxNsYRUa5xMWOeA%2F37DTvhtVIvE0xEo9KQJFafEfWmiN6miYtDH2wZiQJDIW8iP%2FVvgT65CPHqpXDHactizeZxWdCmH8joM7CPkJZ4vchCoM0m6LKqapRE2zEbik8tg9xjP3O3d98zRgOwdgrx1Oeaj%2BJj%2BjgNU1FceosQcKJ8aVcMlEIcHfwuFMdv%2F3t5m4lClp%2FKCa%2BN9KvshSEvcCrP%2BWxvVE2M9evLQuOu0gvXX1LoQ7wN7RTJjwFAzQcCDSBB5MyuI7ZqCJvjDWGy2U5gGDa5uLXpePSOZuj46G8oSZ4%2FKRHa5vECWGf22iZeISCyuD0goJuGIFvpUa7F5C4BSDLGLTkYnBK1Y2VUx6VqDiEPW7YRrAkSUPYYh3AE1o8L%2Bfr1NR1Q%2FwugqgrUdGA2rEtVPp060AqyE0C8PuiJAwWIiy67A%2FUakOpmmb8S2zeYEZOMuqUWZDo05xYZaTwcyttBFTz13b9RMrl9Xcch06kRY67o8f10HB4OnSt3TXe4Pmr88JsuWlqQt2hTO2FVOkfJ68YccaHu7cZEf%2Fp1Cobkmvy%2FKjckGyIwP6UX5ZdLDsa0dR%2FiQNPq0i20fKnbQUKZZMKP90McGOqUBBvnNCrkblJD2xdK6ubWMGNV99TWKioLPijWtixE603rZiVMrKHVrG5dXRXpYlVe%2BxFiRoa0OYNyo6wlsA0yjBnMb414k3oqS2tPaZfcGsdALYCShlfqqTF9KheW0Np6VdyOiqGWYLe4LRVQtL6rHjg5o93EMeAOsgMkLnxxwY1J4i3ySduWkh1amJJHewj4yonDXEhuxZN4RhLE7w0Wle4DfLcSE&X-Amz-Signature=c141f52240c4ddcaa8d804df5749fe8969b616ac259ac1bebd59c1a3b0b5aadd&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+  "publishDate": "2025-10-19",
+  "lastEditedTime": "2025-10-19T03:12:00.000Z",
+  "published": true,
+  "content": "- 목적: 포트폴리오·교육·제품의 단일 허브 구축\n- 역할: IA·콘텐츠 모델·배포 파이프라인 설계\n- 규칙: 슬러그·메타·OG 표준, 크로스 링크\n- 성과: 검색노출 향상, 전환 경로 단축\n\n## Situation\n\n\n콘텐츠가 여러 플랫폼에 흩어져 검색과 접근 동선이 길고, 최신 상태 유지가 어려웠다. 포트폴리오, 교육, 제품을 한곳에서 안내할 허브가 필요했다.\n\n\n## Task\n\n\nIA를 재설계하고, 노션→정적 사이트 배포 파이프라인을 구성한다. 메타·슬러그·태그 표준으로 SEO를 안정화하고, 사용자 GEO를 단순화한다.\n\n\n## Action\n\n- 섹션 정의: About, Projects, Learn, Store, Contact\n- 콘텐츠 모델과 링크드 DB로 재사용성 강화(AEO)\n- 슬러그·메타데스크립션·오픈그래프 규칙 표준화(SEO)\n- 빌드 자동화와 검수 체크리스트로 배포 안정성 확보\n- 사이트↔노션↔템플릿 상점 간 크로스 링크로 GEO 최적화\n\n## Result\n\n- 콘텐츠 최신성 유지와 검색 노출 개선\n- 프로젝트 소개로부터 문의·구매 전환 경로 단축\n- 내부 운영 인력 없이도 유지 가능한 퍼블리싱 워크플로 정착\n\n## Evidence\n\n- 검색 유입, 세션당 페이지, CTA 클릭률로 개선 효과 측정\n\n## Why it matters\n\n\n웹은 브랜드의 실행 인터페이스다. 정보 구조와 메타 표준을 먼저 세우면, 작은 팀도 큰 영향력을 만든다.\n\n"
+}

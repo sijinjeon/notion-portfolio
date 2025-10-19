@@ -1,0 +1,18 @@
+{
+  "id": "75720882-7c9a-40da-8d99-28b7a36ff14d",
+  "pageType": "Project",
+  "slug": "yonsei-labor-notion-consulting",
+  "title": "노무사사무소 연세 X 시리얼 노션 컨설팅",
+  "metaDescription": "근태·문서·리포팅을 노션으로 통합. IA·권한·대시보드로 자동화하고 보고 리드타임을 단축. 셀프 온보딩과 표준 네이밍으로 검색·접근성을 높였습니다.",
+  "category": "Consulting",
+  "tags": [
+    "Notion",
+    "생산성",
+    "브랜딩"
+  ],
+  "thumbnail": "https://prod-files-secure.s3.us-west-2.amazonaws.com/f462e2f8-2a8e-4bfb-a91b-33c438bd03a3/be8d2f02-3cbc-4520-9f8b-0a0c8b9df461/1._youtube_1280x720.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Y45IVOVF%2F20251019%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251019T035140Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECIaCXVzLXdlc3QtMiJHMEUCIDVCXHoyzd2GzzwXkLDXaZAF5Maeamr3tBs4byjDPln7AiEAyTX2GBmu9UZ6uENfjlfBxd3hdjh5h%2BzX3YLCDXyFGJgqiAQIy%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDL7h68jHiiGf1UMzaCrcA170%2Bi2JD7Db9qB%2Bf4wXMcgw%2B5m64u69jLxNsYRUa5xMWOeA%2F37DTvhtVIvE0xEo9KQJFafEfWmiN6miYtDH2wZiQJDIW8iP%2FVvgT65CPHqpXDHactizeZxWdCmH8joM7CPkJZ4vchCoM0m6LKqapRE2zEbik8tg9xjP3O3d98zRgOwdgrx1Oeaj%2BJj%2BjgNU1FceosQcKJ8aVcMlEIcHfwuFMdv%2F3t5m4lClp%2FKCa%2BN9KvshSEvcCrP%2BWxvVE2M9evLQuOu0gvXX1LoQ7wN7RTJjwFAzQcCDSBB5MyuI7ZqCJvjDWGy2U5gGDa5uLXpePSOZuj46G8oSZ4%2FKRHa5vECWGf22iZeISCyuD0goJuGIFvpUa7F5C4BSDLGLTkYnBK1Y2VUx6VqDiEPW7YRrAkSUPYYh3AE1o8L%2Bfr1NR1Q%2FwugqgrUdGA2rEtVPp060AqyE0C8PuiJAwWIiy67A%2FUakOpmmb8S2zeYEZOMuqUWZDo05xYZaTwcyttBFTz13b9RMrl9Xcch06kRY67o8f10HB4OnSt3TXe4Pmr88JsuWlqQt2hTO2FVOkfJ68YccaHu7cZEf%2Fp1Cobkmvy%2FKjckGyIwP6UX5ZdLDsa0dR%2FiQNPq0i20fKnbQUKZZMKP90McGOqUBBvnNCrkblJD2xdK6ubWMGNV99TWKioLPijWtixE603rZiVMrKHVrG5dXRXpYlVe%2BxFiRoa0OYNyo6wlsA0yjBnMb414k3oqS2tPaZfcGsdALYCShlfqqTF9KheW0Np6VdyOiqGWYLe4LRVQtL6rHjg5o93EMeAOsgMkLnxxwY1J4i3ySduWkh1amJJHewj4yonDXEhuxZN4RhLE7w0Wle4DfLcSE&X-Amz-Signature=87587fb179b91ceac0d7b71e993274b1609fd2906216bbe0ee3989b3f867fa2b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+  "publishDate": "2025-10-19",
+  "lastEditedTime": "2025-10-19T03:11:00.000Z",
+  "published": true,
+  "content": "- 목적: 근태·문서·리포팅 통합 시스템 구축\n- 역할: IA·권한·대시보드 설계, 교육·정착 지원\n- 기간/범위: 2025.08–10, 근태/매뉴얼/보고 자동화\n- 성과: 리포트 시간 단축, 온보딩 가속\n\n## Situation\n\n\n근태, 문서, 콘텐츠가 각기 다른 도구에 흩어져 가시성이 낮고, 보고서 작성과 온보딩에 과도한 시간이 소요됐다.\n\n\n## Task\n\n\n업무 단위를 데이터베이스로 표준화하고, 리포트 자동화와 권한 체계를 확립한다. 실무자가 스스로 유지 가능한 문서화와 교육 경로를 만든다.\n\n\n## Action\n\n- 근태 관리 DB 설계: 출근·퇴근, 주간·월간 집계, 지연·휴가 규칙 정의\n- 매뉴얼 DB로 부서별 SOP와 체크리스트 표준화(AEO 강화)\n- 보고서 자동화와 대시보드로 실시간 가시성 제공\n- 권한과 뷰 전략으로 민감 정보 구분, 접근 최소권한 원칙 적용\n- 교육 세션과 VOD로 셀프 온보딩과 변경 관리 체계화\n\n## Result\n\n- 리포트 작성 시간 대폭 단축, 운영 오류 감소\n- 신규 인력 온보딩 시간 단축과 업무 이관 용이성 확보\n- 현장 피드백을 기반으로 분기별 개선 사이클 정착\n\n## Evidence\n\n- 주간·월간 리포트 리드타임과 오류율 지표로 성과 측정\n- 사용 로그 기반 비정상 패턴 탐지 및 뷰 개선\n\n## Why it matters\n\n\n데이터 모델과 권한, 문서화의 3박자를 맞추면 도구가 아닌 ‘업무 방식’이 바뀐다. GEO·SEO 표준 네이밍으로 검색과 접근성이 함께 개선됐다.\n\n"
+}

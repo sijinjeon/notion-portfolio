@@ -1,0 +1,18 @@
+{
+  "id": "7c544c37-2da9-4481-b4d5-c4c07c25be32",
+  "pageType": "Project",
+  "slug": "learn-notion-with-20-templates",
+  "title": "20가지 템플릿으로 배우는 노션",
+  "metaDescription": "20개 템플릿으로 노션 핵심을 단계 학습. 과제형 실습·정답 템플릿과 메타 표준으로 SEO 강화, 워크숍 표준 교재 채택. 실무 전환률을 높였습니다.",
+  "category": "Education",
+  "tags": [
+    "Notion",
+    "Sireal",
+    "튜토리얼"
+  ],
+  "thumbnail": "https://prod-files-secure.s3.us-west-2.amazonaws.com/f462e2f8-2a8e-4bfb-a91b-33c438bd03a3/c76b3d40-6c54-4739-8b9d-9d67451fdbca/1280x720_youtube.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Y45IVOVF%2F20251019%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251019T035140Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECIaCXVzLXdlc3QtMiJHMEUCIDVCXHoyzd2GzzwXkLDXaZAF5Maeamr3tBs4byjDPln7AiEAyTX2GBmu9UZ6uENfjlfBxd3hdjh5h%2BzX3YLCDXyFGJgqiAQIy%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDL7h68jHiiGf1UMzaCrcA170%2Bi2JD7Db9qB%2Bf4wXMcgw%2B5m64u69jLxNsYRUa5xMWOeA%2F37DTvhtVIvE0xEo9KQJFafEfWmiN6miYtDH2wZiQJDIW8iP%2FVvgT65CPHqpXDHactizeZxWdCmH8joM7CPkJZ4vchCoM0m6LKqapRE2zEbik8tg9xjP3O3d98zRgOwdgrx1Oeaj%2BJj%2BjgNU1FceosQcKJ8aVcMlEIcHfwuFMdv%2F3t5m4lClp%2FKCa%2BN9KvshSEvcCrP%2BWxvVE2M9evLQuOu0gvXX1LoQ7wN7RTJjwFAzQcCDSBB5MyuI7ZqCJvjDWGy2U5gGDa5uLXpePSOZuj46G8oSZ4%2FKRHa5vECWGf22iZeISCyuD0goJuGIFvpUa7F5C4BSDLGLTkYnBK1Y2VUx6VqDiEPW7YRrAkSUPYYh3AE1o8L%2Bfr1NR1Q%2FwugqgrUdGA2rEtVPp060AqyE0C8PuiJAwWIiy67A%2FUakOpmmb8S2zeYEZOMuqUWZDo05xYZaTwcyttBFTz13b9RMrl9Xcch06kRY67o8f10HB4OnSt3TXe4Pmr88JsuWlqQt2hTO2FVOkfJ68YccaHu7cZEf%2Fp1Cobkmvy%2FKjckGyIwP6UX5ZdLDsa0dR%2FiQNPq0i20fKnbQUKZZMKP90McGOqUBBvnNCrkblJD2xdK6ubWMGNV99TWKioLPijWtixE603rZiVMrKHVrG5dXRXpYlVe%2BxFiRoa0OYNyo6wlsA0yjBnMb414k3oqS2tPaZfcGsdALYCShlfqqTF9KheW0Np6VdyOiqGWYLe4LRVQtL6rHjg5o93EMeAOsgMkLnxxwY1J4i3ySduWkh1amJJHewj4yonDXEhuxZN4RhLE7w0Wle4DfLcSE&X-Amz-Signature=3ce8a80afc1d36f3826f6ee0c36610bf5f8f4cb30542a0e67829f39202baa07e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+  "publishDate": "2025-10-19",
+  "lastEditedTime": "2025-10-19T03:11:00.000Z",
+  "published": true,
+  "content": "- 목적: 실전 템플릿 20종으로 Notion 핵심 기능을 단계별 학습\n- 역할: 단독 집필·설계·예제 데이터 제작 및 운영 표준 수립\n- 기간/형태: 2024.10 출간, 북+템플릿+VOD 결합형 학습 경로\n- 성과: 종합 베스트 4위, 워크숍·커리큘럼 표준 교재 채택\n\n## Situation\n\n\n조직과 1인기업 사용자가 같은 문제를 반복했다. 데이터베이스 구조 이해 부족, 권한 설계 실패, 템플릿 정착 실패로 온보딩과 운영이 흔들렸다. 실무에 맞춘 단계형 학습 자료가 필요했다.\n\n\n## Task\n\n\n핵심 기능을 최소 단위로 쪼개고, 바로 복제해 적용할 수 있는 20개 템플릿을 설계한다. 각 템플릿은 목적, 입력 데이터, 뷰, 권한, 유지보수 규칙을 포함하고, 학습자의 완주를 위해 과제형 체크리스트와 정답 템플릿을 제공한다.\n\n\n## Action\n\n- 핵심 시나리오 20개(아이디어→캡처→실행→리뷰)로 정보 흐름 정의\n- 동일 데이터로 다양한 뷰를 구성해 재사용성 극대화(Table, Board, Calendar)\n- 슬러그, 태그, 메타데스크립션 표준을 제정해 SEO·내부 검색 정합성 확보\n- 실패 사례를 패턴화하여 “Do/Don’t” 규칙 카드화\n- 실습 데이터와 자동화 예시(Zapier/Make)로 운영 난이도 완화\n- 북+노션 템플릿+VOD를 결합한 학습 경로를 설계하여 GEO 친화적 접근성 강화\n\n## Result\n\n- Yes24 종합 베스트 4위 기록, 누적 4,000+부 판매로 시장 적합성 검증\n- 강의 커리큘럼 표준 교재로 채택되어 온보딩 시간 단축 및 적용률 상승\n- 기업/대학 워크숍에서 템플릿 재사용으로 구축 리드타임 30% 이상 감소\n\n## Evidence\n\n- 커뮤니티 사용자 피드백과 실습 완주율 데이터로 개선 사이클 운영\n- 반복 질문을 FAQ화하고, 버전 태깅으로 공용 템플릿의 변경 추적 가시화\n\n## Why it matters\n\n\n단순한 도구 학습을 넘어, 템플릿 중심의 프로세스 설계 문화를 확산했다. 누구나 바로 복제해 쓰고, 팀은 유지보수 규칙을 통해 장기 운영을 가능하게 했다. AEO(작성 구조), GEO(접근 경로), SEO(검색 메타) 기준을 초기에 설계하여 콘텐츠와 운영의 일관성을 확보했다.\n\n"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "a08cf2b3-bb5d-4421-8619-f899c4122d7e",
+  "pageType": "Project",
+  "slug": "collab-tools-consulting-book",
+  "title": "실무에 바로 쓰는 협업 도구 컨설팅",
+  "metaDescription": "협업 도구 선정·도입 가이드. 평가 매트릭스·PoC·변화관리로 전환비용 25% 절감. 네이밍·태그 표준으로 검색·탐색 일관성을 강화한 사례.",
+  "category": "Publishing",
+  "tags": [
+    "생산성",
+    "Sireal",
+    "브랜딩"
+  ],
+  "thumbnail": "https://prod-files-secure.s3.us-west-2.amazonaws.com/f462e2f8-2a8e-4bfb-a91b-33c438bd03a3/815d48f9-cd82-4b7a-b066-f27df5685ce3/1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Y45IVOVF%2F20251019%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251019T035140Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECIaCXVzLXdlc3QtMiJHMEUCIDVCXHoyzd2GzzwXkLDXaZAF5Maeamr3tBs4byjDPln7AiEAyTX2GBmu9UZ6uENfjlfBxd3hdjh5h%2BzX3YLCDXyFGJgqiAQIy%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDL7h68jHiiGf1UMzaCrcA170%2Bi2JD7Db9qB%2Bf4wXMcgw%2B5m64u69jLxNsYRUa5xMWOeA%2F37DTvhtVIvE0xEo9KQJFafEfWmiN6miYtDH2wZiQJDIW8iP%2FVvgT65CPHqpXDHactizeZxWdCmH8joM7CPkJZ4vchCoM0m6LKqapRE2zEbik8tg9xjP3O3d98zRgOwdgrx1Oeaj%2BJj%2BjgNU1FceosQcKJ8aVcMlEIcHfwuFMdv%2F3t5m4lClp%2FKCa%2BN9KvshSEvcCrP%2BWxvVE2M9evLQuOu0gvXX1LoQ7wN7RTJjwFAzQcCDSBB5MyuI7ZqCJvjDWGy2U5gGDa5uLXpePSOZuj46G8oSZ4%2FKRHa5vECWGf22iZeISCyuD0goJuGIFvpUa7F5C4BSDLGLTkYnBK1Y2VUx6VqDiEPW7YRrAkSUPYYh3AE1o8L%2Bfr1NR1Q%2FwugqgrUdGA2rEtVPp060AqyE0C8PuiJAwWIiy67A%2FUakOpmmb8S2zeYEZOMuqUWZDo05xYZaTwcyttBFTz13b9RMrl9Xcch06kRY67o8f10HB4OnSt3TXe4Pmr88JsuWlqQt2hTO2FVOkfJ68YccaHu7cZEf%2Fp1Cobkmvy%2FKjckGyIwP6UX5ZdLDsa0dR%2FiQNPq0i20fKnbQUKZZMKP90McGOqUBBvnNCrkblJD2xdK6ubWMGNV99TWKioLPijWtixE603rZiVMrKHVrG5dXRXpYlVe%2BxFiRoa0OYNyo6wlsA0yjBnMb414k3oqS2tPaZfcGsdALYCShlfqqTF9KheW0Np6VdyOiqGWYLe4LRVQtL6rHjg5o93EMeAOsgMkLnxxwY1J4i3ySduWkh1amJJHewj4yonDXEhuxZN4RhLE7w0Wle4DfLcSE&X-Amz-Signature=5088805a9e2cb55736b126458d3afca7a923f221b5ff21d59960802d6aa15971&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+  "publishDate": "2025-10-19",
+  "lastEditedTime": "2025-10-19T03:12:00.000Z",
+  "published": true,
+  "content": "- 역할: 저자·컨설턴트, 평가 매트릭스·변화관리 설계\n- 기간/범위: 2023.10–2024.01, PoC–배포–정착\n- 성과: 전환비용 25% 절감, 병목 30% 감소\n\n# 실무에 바로 쓰는 협업 도구 컨설팅\n\n\n## Situation\n\n\n여러 팀이 도구 난립과 기능 중복으로 업무 단절을 겪고 있었다. 파일 버전 충돌, 의사결정 기록 부재, 온보딩 난이도 상승이 생산성을 저해했다.\n\n\n## Task\n\n\n비즈니스 목표에 정렬된 협업 도구 선정 및 도입 로드맵을 설계한다. 평가 기준을 정량화하고, PoC를 통해 리스크를 사전 차단하며, 변화관리 체계를 내재화한다.\n\n\n## Action\n\n- 목적 중심 평가 매트릭스 정의(업무 적합성, 보안, TCO, 확장성)\n- PoC 운영으로 실제 데이터·프로세스에 대한 적합성 검증\n- 정보 구조 설계(위키, 프로젝트, DB 표준)와 권한 정책 수립\n- 가이드, 템플릿, 교육 VOD로 셀프 온보딩 체계화(AEO 강화)\n- 배포 계획과 리스크 백로그 운영, 점진적 롤아웃으로 조직 저항 최소화\n- SEO·내부 검색 최적화를 위한 네이밍, 태그, 메타 전략 수립\n\n## Result\n\n- Yes24 IT/모바일 Top100 9주로 대중성과 실무 적합성 입증\n- 도구 전환 시 평균 전환 비용 25% 절감, 협업 병목 이슈 30% 감소\n- 관리자 없이도 지속 운영 가능한 문서·템플릿 체계 정착\n\n## Evidence\n\n- 프로젝트 전후 리드타임, 이슈 재발률, 문서 조회·검색 로그로 성과 측정\n- 사용자 피드백 루프로 매 분기 운영 규칙 업데이트\n\n## Why it matters\n\n\n도구 선택이 아닌 “업무 방식”을 설계했다. GEO 측면의 접근 경로 단순화와 AEO 기반 문서 표준을 통해, 변화가 잦은 환경에서도 유지 가능한 협업 인프라를 완성했다.\n\n"
+}
