@@ -197,69 +197,65 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {filteredProjects.map((project) => (
-            <Card key={project.slug} className="group hover:shadow-md transition-shadow">
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <Calendar className="h-4 w-4 text-slate-400" />
-                    <time className="text-sm text-slate-500 font-medium">
-                      {new Date(project.publishDate).toLocaleDateString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                      }).replace(/\./g, '/').replace(/\s/g, '').replace(/\/$/, '')}
-                    </time>
-                    {project.category && (
-                      <>
-                        <span className="text-slate-300">·</span>
-                        <Badge variant="secondary" className="text-xs">
-                          {project.category}
-                        </Badge>
-                      </>
+            <Card key={project.slug} className="group hover:shadow-md hover:border-slate-300 transition-all duration-200">
+              <CardContent className="p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    {/* 날짜와 카테고리 */}
+                    <div className="flex items-center gap-2 text-xs text-slate-500 mb-2.5">
+                      <Calendar className="h-3.5 w-3.5 flex-shrink-0" />
+                      <time className="font-medium">
+                        {new Date(project.publishDate).toLocaleDateString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit'
+                        }).replace(/\./g, '/').replace(/\s/g, '').replace(/\/$/, '')}
+                      </time>
+                      {project.category && (
+                        <>
+                          <span className="text-slate-300">·</span>
+                          <Badge variant="secondary" className="text-xs px-2 py-0 h-5">
+                            {project.category}
+                          </Badge>
+                        </>
+                      )}
+                    </div>
+                    
+                    {/* 제목 */}
+                    <Link href={`/projects/${project.slug}`}>
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-slate-700 transition-colors mb-2 line-clamp-1">
+                        {project.title}
+                      </h3>
+                    </Link>
+
+                    {/* 태그 라인 */}
+                    {project.tags && project.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.slice(0, 4).map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs font-normal border-slate-300 text-slate-600">
+                            {tag}
+                          </Badge>
+                        ))}
+                        {project.tags.length > 4 && (
+                          <Badge variant="outline" className="text-xs font-normal border-slate-300 text-slate-500">
+                            +{project.tags.length - 4}
+                          </Badge>
+                        )}
+                      </div>
                     )}
                   </div>
-                </div>
-                
-                <CardTitle className="text-lg font-semibold text-slate-900 group-hover:text-slate-700 transition-colors">
-                  <Link href={`/projects/${project.slug}`}>
-                    {project.title}
-                  </Link>
-                </CardTitle>
-              </CardHeader>
 
-              <CardContent>
-                {project.metaDescription && (
-                  <p className="text-slate-600 leading-relaxed mb-4">
-                    {project.metaDescription}
-                  </p>
-                )}
-
-                {project.tags && project.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                    {project.tags.length > 4 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{project.tags.length - 4} more
-                      </Badge>
-                    )}
-                  </div>
-                )}
-
-                <Button variant="ghost" size="sm" asChild className="p-0 h-auto">
+                  {/* View Details 버튼 */}
                   <Link 
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center text-sm font-medium text-slate-900 hover:text-slate-600 transition-colors"
+                    className="flex-shrink-0 inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors pt-1"
                   >
                     View Details
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-1.5 h-4 w-4" />
                   </Link>
-                </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

@@ -224,67 +224,71 @@ export function HomeSection() {
           </Button>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {recentProjects.map((project) => (
-            <Card key={project.slug} className="group hover:shadow-md transition-shadow">
-              <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <Calendar className="h-4 w-4 text-slate-400" />
-                    <time className="text-sm text-slate-500 font-medium">
-                      {new Date(project.publishDate).toLocaleDateString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                      }).replace(/\./g, '/').replace(/\s/g, '').replace(/\/$/, '')}
-                    </time>
-                    {project.category && (
-                      <>
-                        <span className="text-slate-300">·</span>
-                        <Badge variant="secondary" className="text-xs">
-                          {project.category}
-                        </Badge>
-                      </>
-                    )}
-                  </div>
+            <Card key={project.slug} className="group hover:shadow-lg transition-all duration-300 border-slate-200">
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                  <Calendar className="h-3.5 w-3.5" />
+                  <time className="font-medium">
+                    {new Date(project.publishDate).toLocaleDateString('ko-KR', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit'
+                    }).replace(/\./g, '/').replace(/\s/g, '').replace(/\/$/, '')}
+                  </time>
+                  {project.category && (
+                    <>
+                      <span className="text-slate-300">·</span>
+                      <Badge variant="secondary" className="text-xs px-2 py-0 h-5">
+                        {project.category}
+                      </Badge>
+                    </>
+                  )}
                 </div>
                 
-                <CardTitle className="text-lg font-semibold text-slate-900 group-hover:text-slate-700 transition-colors">
-                  <Link href={`/projects/${project.slug}`}>
-                    {project.title}
-                  </Link>
-                </CardTitle>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <Link href={`/projects/${project.slug}`} className="flex-1">
+                      <CardTitle className="text-2xl font-bold text-slate-900 group-hover:text-slate-700 transition-colors leading-tight">
+                        {project.title}
+                      </CardTitle>
+                    </Link>
+                  </div>
+                  
+                  {/* 태그 라인 - 제목 바로 아래 */}
+                  {project.tags && project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.slice(0, 5).map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-xs font-normal border-slate-300 text-slate-600 hover:bg-slate-50">
+                          {tag}
+                        </Badge>
+                      ))}
+                      {project.tags.length > 5 && (
+                        <Badge variant="outline" className="text-xs font-normal border-slate-300 text-slate-500">
+                          +{project.tags.length - 5}
+                        </Badge>
+                      )}
+                    </div>
+                  )}
+                </div>
               </CardHeader>
 
-              <CardContent>
+              <CardContent className="pt-0">
+                {/* Meta Description - 더 세련된 스타일 */}
                 {project.metaDescription && (
-                  <p className="text-slate-600 leading-relaxed mb-4">
+                  <p className="text-base text-slate-600 leading-relaxed mb-5">
                     {project.metaDescription}
                   </p>
                 )}
 
-                {project.tags && project.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                    {project.tags.length > 4 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{project.tags.length - 4} more
-                      </Badge>
-                    )}
-                  </div>
-                )}
-
-                <Button variant="ghost" size="sm" asChild className="p-0 h-auto">
+                <Button variant="ghost" size="sm" asChild className="p-0 h-auto -ml-1">
                   <Link 
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center text-sm font-medium text-slate-900 hover:text-slate-600 transition-colors"
+                    className="inline-flex items-center text-sm font-semibold text-slate-900 hover:text-slate-600 transition-colors"
                   >
                     Read more
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-1.5 h-4 w-4" />
                   </Link>
                 </Button>
               </CardContent>
