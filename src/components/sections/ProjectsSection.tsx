@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Calendar, ArrowRight, Filter, FileText, TrendingUp } from 'lucide-react';
+import { Calendar, ArrowRight, FileText, TrendingUp } from 'lucide-react';
 import type { PageData } from '@/types';
 
 export function ProjectsSection() {
@@ -170,24 +170,18 @@ export function ProjectsSection() {
       <Separator className="my-8" />
 
       {/* 카테고리 필터 */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-slate-600" />
-          <h3 className="text-lg font-semibold text-slate-900">Filter by Category</h3>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={activeCategory === category ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setActiveCategory(category)}
-              className="text-sm"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+      <div className="flex flex-wrap gap-2">
+        {categories.map((category) => (
+          <Button
+            key={category}
+            variant={activeCategory === category ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setActiveCategory(category)}
+            className="text-sm"
+          >
+            {category}
+          </Button>
+        ))}
       </div>
 
       <Separator className="my-8" />
