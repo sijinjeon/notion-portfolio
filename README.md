@@ -80,10 +80,18 @@ Notion에서 글을 쓰면 자동으로 나만의 포트폴리오 웹사이트�
 | **[PHASE_9_NOTION_SETUP.md](./docs/PHASE_9_NOTION_SETUP.md)** | Notion 설정에 집중 | 40분 |
 | **[NOTION_BUTTON_URL.md](./docs/NOTION_BUTTON_URL.md)** | 버튼 설정만 보고 싶은 분 | 5분 |
 
+### 🎁 Notion 데이터베이스 템플릿
+
+시작하기 전에 필요한 Notion 데이터베이스 구조를 바로 사용할 수 있습니다!
+
+👉 **[Notion 데이터베이스 템플릿 복제하기](https://sire.al/Fap9Fm)**
+
+이 템플릿을 복제하면 필요한 모든 속성(제목, 카테고리, 공개여부 등)이 자동으로 설정됩니다.
+
 ### 간단 요약
 
-1. **Notion Integration 생성** → API 키 발급
-2. **Notion 데이터베이스 생성** → 필수 속성 추가
+1. **Notion 데이터베이스 템플릿 복제** → 위 링크 클릭
+2. **Notion Integration 생성** → API 키 발급
 3. **환경 변수 설정** → `.env.local` 파일 수정
 4. **동기화 테스트** → `npm run sync`
 5. **개발 서버 실행** → `npm run dev`
