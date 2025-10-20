@@ -44,9 +44,9 @@ export function AboutSection() {
 
   return (
     <section>
-      {/* 메인 콘텐츠 - 카드 없이 직접 렌더링 */}
+      {/* 메인 콘텐츠 - 모바일 최적화된 Prose */}
       {aboutData ? (
-        <div className="prose prose-slate max-w-none">
+        <div className="prose prose-slate prose-sm md:prose-base max-w-none">
           <MarkdownRenderer content={aboutData.content} />
         </div>
       ) : (

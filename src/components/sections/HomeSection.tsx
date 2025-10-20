@@ -161,9 +161,9 @@ export function HomeSection() {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6 md:space-y-8">
       {/* 통계 카드 섹션 - 개인 브랜딩 중심 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
@@ -224,10 +224,10 @@ export function HomeSection() {
           </Button>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           {recentProjects.map((project) => (
             <Card key={project.slug} className="group hover:shadow-lg transition-all duration-300 border-slate-200">
-              <CardHeader className="pb-3">
+              <CardHeader className="pb-3 px-4 md:px-6">
                 <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
                   <Calendar className="h-3.5 w-3.5" />
                   <time className="font-medium">
@@ -250,7 +250,7 @@ export function HomeSection() {
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
                     <Link href={`/projects/${project.slug}`} className="flex-1">
-                      <CardTitle className="text-2xl font-bold text-slate-900 group-hover:text-slate-700 transition-colors leading-tight">
+                      <CardTitle className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-slate-700 transition-colors leading-tight">
                         {project.title}
                       </CardTitle>
                     </Link>
@@ -274,10 +274,10 @@ export function HomeSection() {
                 </div>
               </CardHeader>
 
-              <CardContent className="pt-0">
-                {/* Meta Description - 더 세련된 스타일 */}
+              <CardContent className="pt-0 px-4 md:px-6">
+                {/* Meta Description - 모바일 최적화 */}
                 {project.metaDescription && (
-                  <p className="text-base text-slate-600 leading-relaxed mb-5">
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-5">
                     {project.metaDescription}
                   </p>
                 )}

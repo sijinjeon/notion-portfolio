@@ -41,29 +41,31 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
 
   return (
     <>
-      {/* 모바일 헤더 */}
+      {/* 모바일 헤더 - 768px 미만에서만 표시 */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 md:hidden">
         <div className="flex items-center justify-between p-4">
-          <h1 className="text-lg font-semibold">전시진</h1>
+          <h1 className="text-lg font-semibold text-slate-900">전시진</h1>
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-slate-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="메뉴 열기"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 text-slate-700" />
           </button>
         </div>
       </header>
 
-      {/* 모바일 오버레이 */}
+      {/* 모바일 사이드바 오버레이 - 768px 미만에서만 표시 */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
+          {/* 배경 오버레이 */}
           <div 
-            className="fixed inset-0 bg-black/50"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="사이드바 닫기"
           />
-          <aside className="fixed left-0 top-0 h-full w-80 bg-white border-r border-slate-200">
+          {/* 사이드바 패널 */}
+          <aside className="fixed left-0 top-0 h-full w-80 bg-white shadow-xl animate-slide-in">
             <SidebarContent 
               activeSection={activeSection} 
               onSectionChange={(section) => {
@@ -77,7 +79,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
         </div>
       )}
 
-      {/* 데스크톱 사이드바 */}
+      {/* 데스크톱 사이드바 - 768px 이상에서만 표시 */}
       <aside className="w-full h-full hidden md:flex md:flex-col">
         <SidebarContent 
           activeSection={activeSection} 
@@ -142,13 +144,13 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
                 </div>
               </div>
               
-              {/* 소셜 링크 */}
-              <div className="flex justify-center gap-2">
+              {/* 소셜 링크 - 모바일 터치 타겟 최적화 */}
+              <div className="flex flex-wrap justify-center gap-2">
                 <a
                   href="https://github.com/sijinjeon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 md:px-2.5 md:py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
                 >
                   <Github className="h-3 w-3" />
                   GitHub
@@ -157,7 +159,7 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
                   href="https://www.linkedin.com/in/sijinjeon/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 md:px-2.5 md:py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
                 >
                   <Linkedin className="h-3 w-3" />
                   LinkedIn
@@ -166,7 +168,7 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
                   href="https://www.threads.com/@sireal_co"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 md:px-2.5 md:py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
                 >
                   <Twitter className="h-3 w-3" />
                   Threads
@@ -204,13 +206,13 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
                 </div>
               </div>
               
-              {/* 소셜 링크 */}
-              <div className="flex justify-center gap-2">
+              {/* 소셜 링크 - 모바일 터치 타겟 최적화 */}
+              <div className="flex flex-wrap justify-center gap-2">
                 <a
                   href="https://github.com/sijinjeon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 md:px-2.5 md:py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
                 >
                   <Github className="h-3 w-3" />
                   GitHub
@@ -219,7 +221,7 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
                   href="https://www.linkedin.com/in/sijinjeon/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 md:px-2.5 md:py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
                 >
                   <Linkedin className="h-3 w-3" />
                   LinkedIn
@@ -228,7 +230,7 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
                   href="https://www.threads.com/@sireal_co"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 md:px-2.5 md:py-1.5 bg-slate-900 text-white text-xs font-medium rounded-md hover:bg-slate-800 transition-colors"
                 >
                   <Twitter className="h-3 w-3" />
                   Threads
@@ -249,7 +251,7 @@ function SidebarContent({ activeSection, onSectionChange, profileData, loading }
             return (
               <li key={item.id}>
                 <button 
-                  className={`w-full text-left px-3 py-2.5 rounded-md transition-all flex items-center gap-3 group relative ${
+                  className={`w-full text-left px-3 py-3 md:py-2.5 rounded-md transition-all flex items-center gap-3 group relative ${
                     isActive 
                       ? 'bg-slate-900 text-white font-medium shadow-sm' 
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'

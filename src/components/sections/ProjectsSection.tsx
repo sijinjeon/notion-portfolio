@@ -118,9 +118,9 @@ export function ProjectsSection() {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6 md:space-y-8">
       {/* 통계 카드 섹션 */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-xs font-medium text-slate-600">
@@ -169,15 +169,15 @@ export function ProjectsSection() {
 
       <Separator className="my-8" />
 
-      {/* 카테고리 필터 */}
-      <div className="flex flex-wrap gap-2">
+      {/* 카테고리 필터 - 모바일 터치 최적화 */}
+      <div className="flex flex-wrap gap-1.5 md:gap-2">
         {categories.map((category) => (
           <Button
             key={category}
             variant={activeCategory === category ? 'default' : 'outline'}
             size="sm"
             onClick={() => setActiveCategory(category)}
-            className="text-sm"
+            className="text-xs md:text-sm min-h-[44px] md:min-h-auto px-3 md:px-4"
           >
             {category}
           </Button>
@@ -200,8 +200,9 @@ export function ProjectsSection() {
         <div className="space-y-3">
           {filteredProjects.map((project) => (
             <Card key={project.slug} className="group hover:shadow-md hover:border-slate-300 transition-all duration-200">
-              <CardContent className="p-5">
-                <div className="flex items-start justify-between gap-4">
+              <CardContent className="p-4 md:p-5">
+                {/* 모바일: 세로 레이아웃, 데스크톱: 가로 레이아웃 */}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 md:gap-4">
                   <div className="flex-1 min-w-0">
                     {/* 날짜와 카테고리 */}
                     <div className="flex items-center gap-2 text-xs text-slate-500 mb-2.5">
@@ -225,7 +226,7 @@ export function ProjectsSection() {
                     
                     {/* 제목 */}
                     <Link href={`/projects/${project.slug}`}>
-                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-slate-700 transition-colors mb-2 line-clamp-1">
+                      <h3 className="text-base md:text-lg font-semibold text-slate-900 group-hover:text-slate-700 transition-colors mb-2 line-clamp-2 md:line-clamp-1">
                         {project.title}
                       </h3>
                     </Link>
@@ -247,10 +248,10 @@ export function ProjectsSection() {
                     )}
                   </div>
 
-                  {/* View Details 버튼 */}
+                  {/* View Details 버튼 - 모바일: 풀 너비, 데스크톱: 고정 */}
                   <Link 
                     href={`/projects/${project.slug}`}
-                    className="flex-shrink-0 inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors pt-1"
+                    className="w-full md:w-auto text-center md:text-left flex items-center justify-center md:justify-start text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors min-h-[44px] md:min-h-auto md:pt-1"
                   >
                     View Details
                     <ArrowRight className="ml-1.5 h-4 w-4" />
