@@ -477,48 +477,129 @@ animate-pulse
 
 ## 7. 반응형 디자인
 
-### 7.1 브레이크포인트
+> **⚡ 구현 완료**: 2025.10.20 - 완벽한 모바일 반응형 디자인 구현
+
+### 7.1 핵심 디자인 원칙
+
+#### 데스크톱 우선 보존
+- **≥768px**: 기존 디자인 100% 유지
+- 사이드바 레이아웃, 카드 크기, 여백, 폰트 모두 그대로
+
+#### 모바일 전용 최적화
+- **<768px**: 완전히 새로운 모바일 최적화 레이아웃
+- 햄버거 메뉴, 터치 최적화 (44x44px), 반응형 여백
+
+### 7.2 브레이크포인트
 
 ```css
-/* Tailwind 기본 브레이크포인트 */
-sm: 640px   /* 스몰 태블릿 */
-md: 768px   /* 태블릿 */
-lg: 1024px  /* 데스크톱 */
-xl: 1280px  /* 대형 데스크톱 */
+/* 실제 구현된 브레이크포인트 */
+mobile:  < 768px    /* 햄버거 메뉴, 전체 너비 콘텐츠 */
+tablet:  768px+     /* 사이드바 표시, 기존 디자인 유지 */
+desktop: 768px+     /* 기존 디자인 100% 유지 */
+
+/* Tailwind 브레이크포인트 */
+sm: 640px   /* 모바일 가로 */
+md: 768px   /* 태블릿/데스크톱 경계선 ⭐ */
+lg: 1024px  /* 대형 데스크톱 */
+xl: 1280px  /* 초대형 데스크톱 */
 ```
 
-### 7.2 모바일 레이아웃 (< 768px)
+### 7.3 모바일 레이아웃 (< 768px)
 
-#### 사이드바
-- **기본**: 숨김 (`hidden md:flex`)
-- **모바일 헤더**: 상단 고정
-  - 이름 표시
-  - 햄버거 메뉴 버튼
+#### 7.3.1 햄버거 메뉴 헤더
+- **위치**: 상단 고정 (`fixed top-0`)
+- **높이**: 64px (`h-16`)
+- **배경**: 흰색 + 하단 보더
+- **버튼**: 44x44px 터치 타겟 보장
+
+```tsx
+<header className="fixed top-0 left-0 right-0 z-50 bg-white border-b md:hidden">
+  <div className="flex items-center justify-between p-4">
+    <h1 className="text-lg font-semibold">전시진</h1>
+    <button className="min-h-[44px] min-w-[44px]">
+      <Menu className="h-6 w-6" />
+    </button>
+  </div>
+</header>
+```
+
+#### 7.3.2 슬라이드 인 오버레이 사이드바
+- **애니메이션**: 0.3초 슬라이드 인
+- **배경 오버레이**: 반투명 블랙 + 블러
+- **사이드바 너비**: 320px (`w-80`)
+- **닫기 방법**: 
+  - 오버레이 클릭
+  - 메뉴 아이템 선택
+  - ESC 키 (추후 구현 가능)
+
+```tsx
+{mobileMenuOpen && (
+  <div className="fixed inset-0 z-40 md:hidden">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+    <aside className="fixed left-0 top-0 h-full w-80 bg-white animate-slide-in">
+      {/* 사이드바 내용 */}
+    </aside>
+  </div>
+)}
+```
+
+#### 7.3.3 메인 콘텐츠
+- **상단 패딩**: 64px (헤더 공간 확보)
+- **여백**: 16px (모바일) → 24px (데스크톱)
+- **너비**: 100% (모바일) → 계산된 너비 (데스크톱)
+
+```tsx
+<main className="pt-16 md:pt-0">
+  <div className="p-6 md:p-8 lg:px-16 lg:py-14">
+    {/* 콘텐츠 */}
+  </div>
+</main>
+```
+
+### 7.4 반응형 컴포넌트
+
+#### 7.4.1 통계 카드 그리드
+```tsx
+// 1열 (모바일) → 2열 (태블릿) → 3열 (데스크톱)
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+```
+
+#### 7.4.2 프로젝트 카드
+```tsx
+// 세로 레이아웃 (모바일) → 가로 레이아웃 (데스크톱)
+<div className="flex flex-col md:flex-row gap-3 md:gap-4">
   
-#### 모바일 메뉴
-- **오버레이**: 전체 화면 반투명 배경
-- **사이드바**: 왼쪽에서 슬라이드 인
-- **닫기**: 오버레이 클릭 또는 메뉴 선택 시
-
-#### 통계 카드
-```css
-/* 모바일: 세로 나열 */
-grid-cols-1
-
-/* 데스크톱: 3열 그리드 */
-md:grid-cols-3
+// 폰트 크기
+<h3 className="text-xl md:text-2xl">  // 20px → 24px
+<p className="text-sm md:text-base">   // 14px → 16px
 ```
 
-### 7.3 태블릿 레이아웃 (768px ~ 1024px)
+#### 7.4.3 터치 타겟 최적화
+```tsx
+// 모든 버튼은 최소 44x44px
+<button className="min-h-[44px] md:min-h-auto">
 
-#### 패딩 조정
-```css
-p-8 md:p-12
+// 소셜 링크
+<a className="px-3 py-2 md:px-2.5 md:py-1.5">
+
+// 카테고리 필터
+<Button className="min-h-[44px] md:min-h-auto px-3 md:px-4">
 ```
 
-#### 타이포그래피
-```css
-text-4xl md:text-5xl
+### 7.5 반응형 여백 시스템
+
+```tsx
+// 컨테이너
+p-4 md:p-6              // 16px → 24px
+
+// 메인 콘텐츠
+p-6 md:p-8 lg:px-16     // 24px → 32px → 64px (좌우)
+
+// 섹션 간격
+space-y-6 md:space-y-8  // 24px → 32px
+
+// 카드 패딩
+px-4 md:px-6            // 16px → 24px
 ```
 
 ### 7.4 이미지 반응형
