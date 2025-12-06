@@ -27,6 +27,21 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  
+  // Cache Control
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
